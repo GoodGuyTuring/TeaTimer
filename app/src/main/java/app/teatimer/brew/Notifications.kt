@@ -17,19 +17,30 @@ import app.teatimer.MainActivity
 import app.teatimer.R
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
+import app.teatimer.model.formatRemaining
 
 object Notifications {
-    private const val CHANNEL_RUNNING = "running"
+    /**
+     * The active timer. Default importance (not low) so it shows on the lock screen, which
+     * hides "silent" notifications by default; it still makes no sound or vibration.
+     */
+    private const val CHANNEL_TIMER = "timer"
+    /** Replaced by [CHANNEL_TIMER] in 0.5.0: a channel's importance can't be raised later. */
+    private const val OLD_CHANNEL_RUNNING = "running"
     private const val CHANNEL_DONE = "done"
-    private const val ID_RUNNING = 1
+    private const val ID_TIMER = 1
     const val ID_DONE = 2
 
     fun createChannels(context: Context) {
         val manager = context.getSystemService(NotificationManager::class.java)
+        manager.deleteNotificationChannel(OLD_CHANNEL_RUNNING)
         manager.createNotificationChannel(
-            NotificationChannel(CHANNEL_RUNNING, "Running timer", NotificationManager.IMPORTANCE_LOW).apply {
-                description = "Countdown of the current infusion"
+            NotificationChannel(CHANNEL_TIMER, "Active timer", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "The running or paused infusion, also on the lock screen"
+                setSound(null, null)
+                enableVibration(false)
                 setShowBadge(false)
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             },
         )
         manager.createNotificationChannel(
@@ -38,12 +49,17 @@ object Notifications {
                 description = "Shown while the alarm rings"
                 setSound(null, null)
                 enableVibration(false)
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             },
         )
     }
 
-    /** Ongoing notification with a live countdown, e.g. on the lock screen. */
-    fun showRunning(context: Context, sequence: BrewingSequence, state: BrewState) {
+    /**
+     * Ongoing notification for a running (live countdown) or paused infusion, with Pause /
+     * Resume and Stop. Shown on the lock screen; on Android 16+ it asks to be a Live Update
+     * (countdown chip in the status bar).
+     */
+    fun showTimer(context: Context, sequence: BrewingSequence, state: BrewState) {
         // Notification permission exists from Android 13; before that notifications are always allowed.
         if (Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) !=
@@ -51,24 +67,43 @@ object Notifications {
         ) {
             return
         }
-        val remainingMs = state.endsAt - SystemClock.elapsedRealtime()
-        val notification = NotificationCompat.Builder(context, CHANNEL_RUNNING)
+        val running = state.phase == BrewState.Phase.RUNNING
+        val step = sequence.steps[state.step]
+        val infusion = buildString {
+            append("Infusion ${state.step + 1} of ${sequence.steps.size}")
+            step.temp?.let { append(" · $it") }
+        }
+        val builder = NotificationCompat.Builder(context, CHANNEL_TIMER)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(sequence.tea)
-            .setContentText("${sequence.detail} · infusion ${state.step + 1} of ${sequence.steps.size}")
-            .setWhen(System.currentTimeMillis() + remainingMs)
-            .setUsesChronometer(true)
-            .setChronometerCountDown(true)
             .setOngoing(true)
-            .setSilent(true)
+            .setOnlyAlertOnce(true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setCategory(NotificationCompat.CATEGORY_STOPWATCH)
             .setContentIntent(openApp(context))
-            .build()
-        NotificationManagerCompat.from(context).notify(ID_RUNNING, notification)
+            .setRequestPromotedOngoing(true)
+        if (running) {
+            val remainingMs = state.endsAt - SystemClock.elapsedRealtime()
+            builder
+                .setContentText("${sequence.detail} · $infusion")
+                .setWhen(System.currentTimeMillis() + remainingMs)
+                .setShowWhen(true)
+                .setUsesChronometer(true)
+                .setChronometerCountDown(true)
+                .addAction(0, "Pause", timerAction(context, NotificationActionReceiver.ACTION_TOGGLE))
+        } else {
+            builder
+                .setContentText("Paused · ${formatRemaining(state.remainingMs)} left · $infusion")
+                .setShowWhen(false)
+                .setShortCriticalText("Paused")
+                .addAction(0, "Resume", timerAction(context, NotificationActionReceiver.ACTION_TOGGLE))
+        }
+        builder.addAction(0, "Stop", timerAction(context, NotificationActionReceiver.ACTION_STOP))
+        NotificationManagerCompat.from(context).notify(ID_TIMER, builder.build())
     }
 
-    fun cancelRunning(context: Context) {
-        NotificationManagerCompat.from(context).cancel(ID_RUNNING)
+    fun cancelTimer(context: Context) {
+        NotificationManagerCompat.from(context).cancel(ID_TIMER)
     }
 
     /** Notification shown while the alarm rings (AlertService's foreground notification). */
@@ -79,6 +114,7 @@ object Notifications {
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setContentIntent(openApp(context))
             .addAction(
                 0,
@@ -91,6 +127,13 @@ object Notifications {
                 ),
             )
             .build()
+
+    private fun timerAction(context: Context, action: String): PendingIntent = PendingIntent.getBroadcast(
+        context,
+        action.hashCode(),
+        Intent(context, NotificationActionReceiver::class.java).setAction(action),
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+    )
 
     private fun openApp(context: Context): PendingIntent = PendingIntent.getActivity(
         context,

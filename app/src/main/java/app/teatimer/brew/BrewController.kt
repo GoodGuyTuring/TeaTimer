@@ -168,10 +168,14 @@ class BrewController private constructor(private val context: Context) {
         val sequence = sequenceOf(state)
         if (state.phase == BrewState.Phase.RUNNING && sequence != null) {
             AlarmScheduler.schedule(context, state.endsAt)
-            Notifications.showRunning(context, sequence, state)
         } else {
             AlarmScheduler.cancel(context)
-            Notifications.cancelRunning(context)
+        }
+        // The timer notification stays while paused, so it can be resumed from the lock screen.
+        if (state.phase != BrewState.Phase.READY && sequence != null) {
+            Notifications.showTimer(context, sequence, state)
+        } else {
+            Notifications.cancelTimer(context)
         }
     }
 

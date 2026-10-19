@@ -24,7 +24,9 @@ Built for GrapheneOS. It needs no Google services.
 - When an infusion is done, the phone rings for 3, 5, 10 or 15 seconds (set in the app),
   following the ringer mode, and the widget lines up the next time. After the last
   infusion it goes back to choosing.
-- A notification shows the countdown, e.g. on the lock screen.
+- While a timer runs or is paused, a notification shows it, also on the lock screen, with
+  Pause / Resume and Stop. On Android 16+ it asks to be a Live Update (countdown chip in the
+  status bar).
 
 The full feature list, decisions and build order are in [FEATURES.md](FEATURES.md).
 

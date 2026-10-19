@@ -3,6 +3,8 @@
 
     <!-- Countdown notification and "infusion done" alert. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Android 16+: show the running timer as a Live Update (status bar chip, lock screen). -->
+    <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
     <!-- Timer apps may use exact alarms without asking; needed so the alarm fires on time. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <!-- AlertService: ring/vibrate for a few seconds, also with the screen off. -->
@@ -43,6 +45,10 @@
 
         <receiver
             android:name=".brew.AlarmReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".brew.NotificationActionReceiver"
             android:exported="false" />
 
         <service
