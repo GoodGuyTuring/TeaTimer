@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Teacup with steam, drawn inside the 66dp safe zone of the 108dp adaptive icon. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Steam -->
+    <path
+        android:pathData="M46,44 q-3,-4 0,-8 q3,-4 0,-8 M58,44 q-3,-4 0,-8 q3,-4 0,-8"
+        android:strokeWidth="3"
+        android:strokeColor="#FFF8E7"
+        android:strokeLineCap="round" />
+    <!-- Cup -->
+    <path
+        android:fillColor="#FFF8E7"
+        android:pathData="M32,50 h40 v6 a20,20 0 0 1 -40,0 z" />
+    <!-- Handle -->
+    <path
+        android:pathData="M72,54 h3 a6,6 0 0 1 0,12 h-5"
+        android:strokeWidth="3.5"
+        android:strokeColor="#FFF8E7"
+        android:strokeLineCap="round" />
+    <!-- Saucer -->
+    <path
+        android:pathData="M28,80 h48"
+        android:strokeWidth="4"
+        android:strokeColor="#FFF8E7"
+        android:strokeLineCap="round" />
+</vector>

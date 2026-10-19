@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+.kotlin/
+
+# Local machine config (SDK path)
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing keys: never commit these
+*.jks
+*.keystore
+keystore.properties
+
+# OS
+.DS_Store
+Thumbs.db
