@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Live countdown for the widget. Glance has no chronometer, so this plain RemoteViews layout is embedded.
-     The frame fills the width and centres the countdown, like the paused/ready time Glance draws. -->
+     Glance stretches the box around it over all the free space between the lines above and below,
+     so the frame fills that box and centres the countdown in it, where the ready/paused time sits. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <Chronometer
         android:id="@+id/countdown"

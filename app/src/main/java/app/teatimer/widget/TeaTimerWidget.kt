@@ -160,19 +160,24 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
             maxLines = 1,
             style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant, fontSize = 12.sp),
         )
-        Spacer(GlanceModifier.defaultWeight())
-        when (state.phase) {
-            BrewState.Phase.RUNNING -> AndroidRemoteViews(
-                remoteViews = RemoteViews(context.packageName, R.layout.widget_countdown).apply {
-                    setChronometer(R.id.countdown, state.endsAt, null, true)
-                    setChronometerCountDown(R.id.countdown, true)
-                },
-                modifier = GlanceModifier.fillMaxWidth(),
-            )
-            BrewState.Phase.READY -> BigTime(formatSteep(step.seconds))
-            BrewState.Phase.PAUSED -> BigTime(formatRemaining(state.remainingMs))
+        // The time gets all the free space and sits in its centre, the same box in every phase,
+        // so the running countdown doesn't move away from where the ready/paused time was.
+        Box(
+            modifier = GlanceModifier.defaultWeight().fillMaxWidth(),
+            contentAlignment = Alignment.Center,
+        ) {
+            when (state.phase) {
+                BrewState.Phase.RUNNING -> AndroidRemoteViews(
+                    remoteViews = RemoteViews(context.packageName, R.layout.widget_countdown).apply {
+                        setChronometer(R.id.countdown, state.endsAt, null, true)
+                        setChronometerCountDown(R.id.countdown, true)
+                    },
+                    modifier = GlanceModifier.fillMaxSize(),
+                )
+                BrewState.Phase.READY -> BigTime(formatSteep(step.seconds))
+                BrewState.Phase.PAUSED -> BigTime(formatRemaining(state.remainingMs))
+            }
         }
-        Spacer(GlanceModifier.defaultWeight())
         Text(
             text = when (state.phase) {
                 BrewState.Phase.READY -> "Tap to start"
