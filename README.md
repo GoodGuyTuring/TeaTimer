@@ -7,10 +7,13 @@ Built for GrapheneOS. It needs no Google services.
 
 ## How it works
 
-- Each **sequence** is a tea at an intensity, with its list of steep times
+- Each **sequence** is a tea, brewed one way (e.g. *Gongfu 90 ml*) at one strength
+  (*Light / Medium / Strong*), with its steep times and temperatures
   (for example `0:15, 0:20, 0:25 … 7:00`).
 - **Choose a tea** in the app (one tab per tea type), or tap the widget to open the app
   and choose. Once you've chosen, the app closes again.
+- The tea list comes from the [TeaTimerTimes](https://github.com/GoodGuyTuring/TeaTimerTimes)
+  repo; **Update teas** in the app downloads the latest version.
 - The **widget** then shows the tea, the infusion number and the next time:
   - **Tap:** start the infusion. Tap again to pause or resume.
   - **Double tap:** restart the current infusion.
@@ -24,10 +27,9 @@ The full feature list, decisions and build order are in [FEATURES.md](FEATURES.m
 
 ## Status
 
-First prototype (0.1.0): builds, and the unit tests pass, but it **hasn't been
-tried on a phone yet**. The tea list is a bundled sample
-(`app/src/main/assets/teas.json`), including a "Test" tea with 5-second steps for
-checking the alarm quickly.
+Prototype (0.2.0), installed on the phone from 0.1.1 on. The bundled tea list
+(`app/src/main/assets/teas.json`) is a copy of the TeaTimerTimes list; it includes a
+"Test" tea with 5-second steps for checking the alarm quickly.
 
 ## Installing on the phone (Obtainium)
 

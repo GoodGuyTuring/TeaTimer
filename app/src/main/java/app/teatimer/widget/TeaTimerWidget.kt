@@ -55,8 +55,9 @@ class TeaTimerWidget : GlanceAppWidget() {
         val controller = BrewController.get(context)
         provideContent {
             val state by controller.state.collectAsState()
+            val library by controller.libraryFlow.collectAsState()
             GlanceTheme {
-                val sequence = controller.sequenceOf(state)
+                val sequence = state.sequenceId?.let { library[it] }
                 if (sequence == null) ChooseContent() else BrewContent(sequence, state)
             }
         }
@@ -100,7 +101,7 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState) {
     ) {
         Row(modifier = GlanceModifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = sequence.name,
+                text = sequence.tea,
                 maxLines = 1,
                 modifier = GlanceModifier.defaultWeight(),
                 style = TextStyle(color = GlanceTheme.colors.onSurface, fontWeight = FontWeight.Bold),
@@ -111,19 +112,31 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState) {
                 Text("✕", style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant, fontSize = 18.sp))
             }
         }
+        val step = sequence.steps[state.step]
         Text(
-            text = "Infusion ${state.step + 1} of ${sequence.steepSeconds.size}",
-            style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant),
+            text = sequence.detail,
+            maxLines = 1,
+            style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant, fontSize = 12.sp),
+        )
+        Text(
+            text = buildString {
+                append("Infusion ${state.step + 1} of ${sequence.steps.size}")
+                step.temp?.let { append(" · $it") }
+                if (step.optional) append(" · optional")
+            },
+            maxLines = 1,
+            style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant, fontSize = 12.sp),
         )
         Spacer(GlanceModifier.defaultWeight())
         when (state.phase) {
             BrewState.Phase.RUNNING -> AndroidRemoteViews(
-                RemoteViews(context.packageName, R.layout.widget_countdown).apply {
+                remoteViews = RemoteViews(context.packageName, R.layout.widget_countdown).apply {
                     setChronometer(R.id.countdown, state.endsAt, null, true)
                     setChronometerCountDown(R.id.countdown, true)
                 },
+                modifier = GlanceModifier.fillMaxWidth(),
             )
-            BrewState.Phase.READY -> BigTime(formatSteep(sequence.steepSeconds[state.step]))
+            BrewState.Phase.READY -> BigTime(formatSteep(step.seconds))
             BrewState.Phase.PAUSED -> BigTime(formatRemaining(state.remainingMs))
         }
         Spacer(GlanceModifier.defaultWeight())

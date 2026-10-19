@@ -32,24 +32,45 @@ class TeaTest {
         assertEquals("1:00", formatRemaining(60_000))
     }
 
-    @Test
-    fun `groups a tea file by type, tea and intensity`() {
-        val library = TeaLibrary.parse(
-            """
-            {"teas": [
-              {"type": "Oolong", "name": "Da Hong Pao", "intensities": [
-                {"name": "Light", "steeps": ["0:20", "0:30"]},
-                {"name": "Strong", "steeps": ["0:15"]}
-              ]},
-              {"type": "Green", "name": "Long Jing", "intensities": [
-                {"name": "Medium", "steeps": ["0:30"]}
-              ]}
+    private val sample = """
+        {"version": 2, "updated": "Oct 17, 2026", "teas": [
+          {"type": "Oolong", "name": "Da Hong Pao", "methods": [
+            {"name": "Gongfu 90 ml", "amount": "2.25 tsp", "infusions": [
+              {"temp": "100°C", "light": "0:10", "medium": "0:15", "strong": "0:20"},
+              {"temp": "95°C", "light": "3:00", "medium": "4:00", "strong": "4:30", "optional": true}
+            ]},
+            {"name": "Western 1 L", "infusions": [
+              {"temp": "95°C", "medium": "4:00"}
             ]}
-            """,
-        )
+          ]},
+          {"type": "Green", "name": "Long Jing", "methods": [
+            {"name": "Gongfu 90 ml", "infusions": [{"medium": "0:30"}]}
+          ]}
+        ]}
+    """
+
+    @Test
+    fun `groups a tea file by type, tea, method and strength`() {
+        val library = TeaLibrary.parse(sample)
         assertEquals(listOf("Oolong", "Green"), library.types)
-        assertEquals(listOf("Light", "Strong"), library.teasOf("Oolong")["Da Hong Pao"]!!.map { it.intensity })
-        assertEquals(listOf(20, 30), library["Oolong/Da Hong Pao/Light"]!!.steepSeconds)
+        assertEquals(2, library.teaCount)
+        assertEquals("Oct 17, 2026", library.updated)
+        assertEquals(
+            listOf("Gongfu 90 ml · Light", "Gongfu 90 ml · Medium", "Gongfu 90 ml · Strong", "Western 1 L · Medium"),
+            library.teasOf("Oolong")["Da Hong Pao"]!!.map { it.detail },
+        )
+    }
+
+    @Test
+    fun `sequence steps carry time, temperature and optional`() {
+        val strong = TeaLibrary.parse(sample)["Oolong/Da Hong Pao/Gongfu 90 ml/Strong"]!!
+        assertEquals(listOf(Step(20, "100°C", false), Step(270, "95°C", true)), strong.steps)
+        assertEquals("2.25 tsp", strong.amount)
+    }
+
+    @Test
+    fun `rejects an empty tea list`() {
+        assertThrows(IllegalArgumentException::class.java) { TeaLibrary.parse("""{"teas": []}""") }
     }
 
     @Test

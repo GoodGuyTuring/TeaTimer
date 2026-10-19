@@ -9,25 +9,32 @@ import app.teatimer.model.BrewingSequence
 import app.teatimer.model.TeaLibrary
 import app.teatimer.model.formatSteep
 import app.teatimer.widget.TeaTimerWidget
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import java.io.File
+import java.net.HttpURLConnection
+import java.net.URL
 
 /**
  * Owns the brew state and keeps everything else in step with it: the stored state,
  * the alarm, the running notification and the widget. Shared by the app, the widget
- * and the alarm receiver.
+ * and the alarm receiver. Also owns the tea list and its updates.
  */
 class BrewController private constructor(private val context: Context) {
     private val prefs = context.getSharedPreferences("brew", Context.MODE_PRIVATE)
     private val mutex = Mutex()
     private var lastTapAt = 0L
+    private val downloadedTeas = File(context.filesDir, "teas.json")
 
-    val library: TeaLibrary =
-        TeaLibrary.parse(context.assets.open("teas.json").bufferedReader().use { it.readText() })
+    private val _library = MutableStateFlow(loadLibrary())
+    val libraryFlow: StateFlow<TeaLibrary> = _library.asStateFlow()
+    val library: TeaLibrary get() = _library.value
 
     private val _state = MutableStateFlow(loadState())
     val state: StateFlow<BrewState> = _state.asStateFlow()
@@ -73,6 +80,27 @@ class BrewController private constructor(private val context: Context) {
     }
 
     /**
+     * Downloads the tea list from the tea list repo and keeps it for next time.
+     * A brew whose sequence no longer exists goes back to choosing.
+     */
+    suspend fun updateTeas(): Result<TeaLibrary> = runCatching {
+        val text = withContext(Dispatchers.IO) { download(TEAS_URL) }
+        val library = TeaLibrary.parse(text)
+        withContext(Dispatchers.IO) {
+            val partial = File(context.filesDir, "teas.json.part")
+            partial.writeText(text)
+            check(partial.renameTo(downloadedTeas)) { "Couldn't save the tea list" }
+        }
+        _library.value = library
+        update { current ->
+            val sequence = sequenceOf(current)
+            if (!current.isChoosing && (sequence == null || current.step !in sequence.steps.indices)) BrewState() else current
+        }
+        TeaTimerWidget().updateAll(context)
+        library
+    }
+
+    /**
      * Called when the alarm fires. Moves on to the next infusion and returns what the
      * alert should say, or null if the alarm was stale (timer paused or reset meanwhile).
      */
@@ -84,12 +112,15 @@ class BrewController private constructor(private val context: Context) {
             if (sequence == null || current.phase != BrewState.Phase.RUNNING || current.endsAt > now + ALARM_TOLERANCE_MS) {
                 return@update current
             }
-            val next = current.finishInfusion(sequence.steepSeconds.size)
-            val title = "${sequence.name}: infusion ${current.step + 1} done"
+            val next = current.finishInfusion(sequence.steps.size)
+            val title = "${sequence.tea}: infusion ${current.step + 1} done"
             alert = if (next.isChoosing) {
                 Alert(title, "That was the last infusion.")
             } else {
-                Alert(title, "Next: ${formatSteep(sequence.steepSeconds[next.step])}. Tap the widget to start.")
+                val step = sequence.steps[next.step]
+                val temp = step.temp?.let { " at $it" }.orEmpty()
+                val optional = if (step.optional) " (optional)" else ""
+                Alert(title, "Next: ${formatSteep(step.seconds)}$temp$optional. Tap the widget to start.")
             }
             next
         }
@@ -123,13 +154,19 @@ class BrewController private constructor(private val context: Context) {
         }
     }
 
+    /** The downloaded tea list if there is a valid one, else the list bundled with the app. */
+    private fun loadLibrary(): TeaLibrary =
+        downloadedTeas.takeIf { it.exists() }
+            ?.let { runCatching { TeaLibrary.parse(it.readText()) }.getOrNull() }
+            ?: TeaLibrary.parse(context.assets.open("teas.json").bufferedReader().use { it.readText() })
+
     /** Restores the saved state, dropping anything that no longer makes sense. */
     private fun loadState(): BrewState {
         val saved = prefs.getString(KEY_STATE, null)
             ?.let { runCatching { json.decodeFromString(BrewState.serializer(), it) }.getOrNull() }
             ?: return BrewState()
         val sequence = sequenceOf(saved) ?: return BrewState()
-        if (saved.step !in sequence.steepSeconds.indices) return BrewState()
+        if (saved.step !in sequence.steps.indices) return BrewState()
         if (saved.phase == BrewState.Phase.RUNNING) {
             // After a reboot the clock restarts and the alarm is gone: start the infusion over.
             val left = saved.endsAt - SystemClock.elapsedRealtime()
@@ -138,7 +175,24 @@ class BrewController private constructor(private val context: Context) {
         return saved
     }
 
+    private fun download(url: String): String {
+        val connection = URL(url).openConnection() as HttpURLConnection
+        try {
+            connection.connectTimeout = 15_000
+            connection.readTimeout = 15_000
+            connection.setRequestProperty("Cache-Control", "no-cache")
+            val code = connection.responseCode
+            check(code == HttpURLConnection.HTTP_OK) { "Server answered HTTP $code" }
+            return connection.inputStream.bufferedReader().use { it.readText() }
+        } finally {
+            connection.disconnect()
+        }
+    }
+
     companion object {
+        /** The tea list repo's teas.json (github.com/GoodGuyTuring/TeaTimerTimes). */
+        const val TEAS_URL = "https://raw.githubusercontent.com/GoodGuyTuring/TeaTimerTimes/main/teas.json"
+
         private const val KEY_STATE = "state"
         private const val KEY_RING_SECONDS = "ring_seconds"
         const val DEFAULT_RING_SECONDS = 5

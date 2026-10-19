@@ -10,6 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,10 +18,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -31,6 +35,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -41,6 +47,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,6 +59,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -88,17 +96,48 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
     val state by controller.state.collectAsState()
+    val library by controller.libraryFlow.collectAsState()
     val ringSeconds by controller.ringSeconds.collectAsState()
     val scope = rememberCoroutineScope()
+    val snackbar = remember { SnackbarHostState() }
+    var updating by remember { mutableStateOf(false) }
     RequestNotificationPermission()
 
-    Scaffold(topBar = { TopAppBar(title = { Text(stringResource(R.string.app_name)) }) }) { innerPadding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                actions = {
+                    if (updating) {
+                        CircularProgressIndicator(Modifier.padding(end = 16.dp).size(24.dp), strokeWidth = 2.dp)
+                    } else {
+                        TextButton(
+                            onClick = {
+                                updating = true
+                                scope.launch {
+                                    val result = controller.updateTeas()
+                                    updating = false
+                                    snackbar.showSnackbar(
+                                        result.fold(
+                                            onSuccess = { "Tea list updated: ${describe(it)}" },
+                                            onFailure = { "Update failed: ${it.message ?: it.javaClass.simpleName}" },
+                                        ),
+                                    )
+                                }
+                            },
+                        ) { Text("Update teas") }
+                    }
+                },
+            )
+        },
+        snackbarHost = { SnackbarHost(snackbar) },
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
         ) {
-            controller.sequenceOf(state)?.let { sequence ->
+            state.sequenceId?.let { library[it] }?.let { sequence ->
                 BrewCard(
                     sequence = sequence,
                     state = state,
@@ -108,7 +147,7 @@ fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
                 )
             }
             TeaBrowser(
-                library = controller.library,
+                library = library,
                 selectedId = state.sequenceId,
                 modifier = Modifier.weight(1f),
                 onChoose = { sequence ->
@@ -122,6 +161,9 @@ fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
         }
     }
 }
+
+private fun describe(library: TeaLibrary): String =
+    "${library.teaCount} teas" + (library.updated?.let { ", as of $it" } ?: "")
 
 @Composable
 private fun BrewCard(
@@ -138,35 +180,57 @@ private fun BrewCard(
             delay(200)
         }
     }
-    val stepMs = sequence.steepSeconds[state.step] * 1000L
+    val step = sequence.steps[state.step]
+    var noteExpanded by rememberSaveable(sequence.id) { mutableStateOf(false) }
 
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
     ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(sequence.name, style = MaterialTheme.typography.titleLarge)
-            Text("Infusion ${state.step + 1} of ${sequence.steepSeconds.size}")
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text(sequence.tea, style = MaterialTheme.typography.titleLarge)
             Text(
-                formatRemaining(state.remainingAt(now, stepMs)),
+                listOfNotNull(sequence.detail, sequence.amount).joinToString(" · "),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Text(
+                buildString {
+                    append("Infusion ${state.step + 1} of ${sequence.steps.size}")
+                    step.temp?.let { append(" · $it") }
+                    if (step.optional) append(" · optional")
+                },
+            )
+            Text(
+                formatRemaining(state.remainingAt(now, step.seconds * 1000L)),
                 style = MaterialTheme.typography.displayMedium,
             )
             Text(
                 buildAnnotatedString {
-                    sequence.steepSeconds.forEachIndexed { index, seconds ->
+                    sequence.steps.forEachIndexed { index, s ->
                         if (index > 0) append("  ")
+                        val time = if (s.optional) "(${formatSteep(s.seconds)})" else formatSteep(s.seconds)
                         if (index == state.step) {
                             withStyle(SpanStyle(fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)) {
-                                append(formatSteep(seconds))
+                                append(time)
                             }
                         } else {
-                            append(formatSteep(seconds))
+                            append(time)
                         }
                     }
                 },
                 style = MaterialTheme.typography.bodySmall,
             )
+            sequence.note?.let { note ->
+                Text(
+                    note,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = if (noteExpanded) Int.MAX_VALUE else 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.clickable { noteExpanded = !noteExpanded },
+                )
+            }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = onToggle) {
                     Text(
@@ -186,7 +250,7 @@ private fun BrewCard(
     }
 }
 
-/** One tab per tea type; each tea lists its intensities as chips. */
+/** One tab per tea type; each tea has a row per method with its strengths as chips. */
 @Composable
 private fun TeaBrowser(
     library: TeaLibrary,
@@ -200,28 +264,36 @@ private fun TeaBrowser(
         return
     }
     var tab by rememberSaveable { mutableIntStateOf(0) }
-    val type = types[tab.coerceIn(types.indices)]
+    val selectedTab = tab.coerceIn(types.indices)
 
     Column(modifier) {
-        PrimaryScrollableTabRow(selectedTabIndex = tab.coerceIn(types.indices), edgePadding = 16.dp) {
+        PrimaryScrollableTabRow(selectedTabIndex = selectedTab, edgePadding = 16.dp) {
             types.forEachIndexed { index, name ->
-                Tab(selected = index == tab, onClick = { tab = index }, text = { Text(name) })
+                Tab(selected = index == selectedTab, onClick = { tab = index }, text = { Text(name) })
             }
         }
         LazyColumn(Modifier.fillMaxWidth()) {
-            items(library.teasOf(type).entries.toList(), key = { it.key }) { (tea, intensities) ->
-                Column(Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+            items(library.teasOf(types[selectedTab]).entries.toList(), key = { it.key }) { (tea, sequences) ->
+                Column(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
                     Text(tea, style = MaterialTheme.typography.titleMedium)
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        intensities.forEach { sequence ->
-                            FilterChip(
-                                selected = sequence.id == selectedId,
-                                onClick = { onChoose(sequence) },
-                                label = { Text("${sequence.intensity} · ${sequence.steepSeconds.size}×") },
-                            )
+                    sequences.groupBy { it.method }.forEach { (method, strengths) ->
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(method, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.width(116.dp))
+                            Row(
+                                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            ) {
+                                strengths.forEach { sequence ->
+                                    FilterChip(
+                                        selected = sequence.id == selectedId,
+                                        onClick = { onChoose(sequence) },
+                                        label = { Text(sequence.strength.label) },
+                                    )
+                                }
+                            }
                         }
                     }
                 }

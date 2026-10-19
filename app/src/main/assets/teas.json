@@ -1,43 +1,2375 @@
 {
-  "version": 1,
-  "teas": [
+ "version": 2,
+ "updated": "Oct 17, 2026",
+ "teas": [
+  {
+   "type": "Green",
+   "name": "Westlake Xi Hu Long Jing",
+   "methods": [
     {
-      "type": "Oolong",
-      "name": "Da Hong Pao",
-      "intensities": [
-        { "name": "Light", "steeps": ["0:20", "0:25", "0:30", "0:40", "0:50", "1:10", "1:40", "2:30", "4:00", "6:00"] },
-        { "name": "Medium", "steeps": ["0:15", "0:20", "0:25", "0:35", "0:45", "1:00", "1:30", "2:00", "3:00", "5:00", "7:00"] },
-        { "name": "Strong", "steeps": ["0:15", "0:15", "0:20", "0:25", "0:35", "0:50", "1:10", "1:40", "2:30", "4:00", "7:00"] }
-      ]
+     "name": "Gongfu 90 ml",
+     "amount": "1.5 tsp (~3 g)",
+     "note": "Derived schedule, not brewed yet. Borderline gongfu fit: western is the better default. No rinse. Pour down the gaiwan wall, lid off. 5 infusions; Long Jing tolerates gongfu rather than rewarding it. Basis: Gourmet Kava (100 ml gaiwan, 80°C) and Vicony (3 to 5 g/100 ml).",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00"
+      }
+     ]
     },
     {
-      "type": "Oolong",
-      "name": "Tie Guan Yin",
-      "intensities": [
-        { "name": "Medium", "steeps": ["0:20", "0:20", "0:25", "0:35", "0:50", "1:10", "1:40", "2:30", "4:00"] }
-      ]
+     "name": "Gongfu 60 ml",
+     "amount": "1 tsp (~2 g)",
+     "note": "Derived schedule, not brewed yet. Borderline gongfu fit: western is the better default. No rinse. Pour down the gaiwan wall, lid off. 5 infusions; Long Jing tolerates gongfu rather than rewarding it. Basis: Gourmet Kava (100 ml gaiwan, 80°C) and Vicony (3 to 5 g/100 ml).",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00"
+      }
+     ]
     },
     {
-      "type": "Pu-erh",
-      "name": "Shou",
-      "intensities": [
-        { "name": "Medium", "steeps": ["0:15", "0:15", "0:20", "0:25", "0:30", "0:40", "0:50", "1:10", "1:30", "2:00", "3:00", "5:00"] },
-        { "name": "Strong", "steeps": ["0:15", "0:20", "0:25", "0:30", "0:40", "0:50", "1:00", "1:20", "1:45", "2:30", "4:00", "7:00"] }
-      ]
+     "name": "Western 350 ml",
+     "amount": "2.75 tsp (~5.5 g)",
+     "note": "2 g/tsp (flat leaf). 1L: 2 infusions per charge, each a full 1 L; a third liter is optional and thin. Infusions 2 and 3 at 1 L are Derived. 2 infusions; the third is optional and thin.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "85°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00",
+       "optional": true
+      }
+     ]
     },
     {
-      "type": "Green",
-      "name": "Long Jing",
-      "intensities": [
-        { "name": "Medium", "steeps": ["0:30", "0:40", "0:50", "1:10", "1:40", "2:30"] }
-      ]
-    },
-    {
-      "type": "Test",
-      "name": "Quick test",
-      "intensities": [
-        { "name": "5 s steps", "steeps": ["0:05", "0:05", "0:10"] }
-      ]
+     "name": "Western 1 L",
+     "amount": "9 tsp (~18 g) · light 7 / strong 11",
+     "note": "2 g/tsp (flat leaf). 1L: 2 infusions per charge, each a full 1 L; a third liter is optional and thin. Infusions 2 and 3 at 1 L are Derived.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:30",
+       "medium": "3:00",
+       "strong": "3:30"
+      },
+      {
+       "temp": "85°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00",
+       "optional": true
+      }
+     ]
     }
-  ]
+   ]
+  },
+  {
+   "type": "Green",
+   "name": "Bio Grüner Darjeeling Steinthal",
+   "methods": [
+    {
+     "name": "Western 350 ml",
+     "amount": "2.25 tsp (~4.5 g) · light 1.75 / strong 3",
+     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15. The third infusion is optional and thin.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "9 tsp (~18 g) · light 7 / strong 11",
+     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "2:30",
+       "medium": "3:00",
+       "strong": "3:30"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Green",
+   "name": "Bio Lo Chin Sanxia (Bi Luo Chun)",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2 tsp (~5 g)",
+     "note": "Borderline gongfu fit: western is the better default. 1:18 ratio, no rinse. Pour down the gaiwan wall, not onto the buds. 6 infusions; the 6th is thin.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "0:55",
+       "strong": "1:05"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.25 tsp (~3.1 g) · Derived amount",
+     "note": "Borderline gongfu fit: western is the better default. 1:18 ratio, no rinse. Pour down the gaiwan wall, not onto the buds. 6 infusions; the 6th is thin.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "0:55",
+       "strong": "1:05"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2 tsp (~5 g)",
+     "note": "2.5 g/tsp (strip-ish, machine-shaped). 1L: 2 infusions per charge; 1L leaf amount Derived. Keep it at 80°C: the checked sources tie its bitterness to hot water, not to long steeps. 2 infusions; 3 to 4 only work with about 9 g of leaf.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "6 tsp (~15 g)",
+     "note": "2.5 g/tsp (strip-ish, machine-shaped). 1L: 2 infusions per charge; 1L leaf amount Derived. Keep it at 80°C: the checked sources tie its bitterness to hot water, not to long steeps.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Green",
+   "name": "Bio Jeju Sejak",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.5 tsp (~3.5 g)",
+     "note": "Derived schedule, not brewed yet. Borderline gongfu fit: western is the better default. No rinse. +5°C from infusion 4 to draw on depleted leaf. 5 infusions.",
+     "infusions": [
+      {
+       "temp": "75°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "75°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "75°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1 tsp (~2.3 g)",
+     "note": "Derived schedule, not brewed yet. Borderline gongfu fit: western is the better default. No rinse. +5°C from infusion 4 to draw on depleted leaf. 5 infusions.",
+     "infusions": [
+      {
+       "temp": "75°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "75°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "75°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.5 tsp (~3.5 g)",
+     "note": "2.3 g/tsp (curly needle leaf). 1L: 2 infusions per charge, each a full 1 L at 75°C; 14 g/L sits in the 12 to 15 g/L specialist band. Both 1 L infusions are Derived. Starts at 70°C, the Jeju grower's figure, and steps up with each infusion.",
+     "infusions": [
+      {
+       "temp": "70°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00"
+      },
+      {
+       "temp": "75°C",
+       "light": "1:00",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "2:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "6 tsp (~14 g) · light 5 / strong 7.5",
+     "note": "2.3 g/tsp (curly needle leaf). 1L: 2 infusions per charge, each a full 1 L at 75°C; 14 g/L sits in the 12 to 15 g/L specialist band. Both 1 L infusions are Derived.",
+     "infusions": [
+      {
+       "temp": "75°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "2:30"
+      },
+      {
+       "temp": "75°C",
+       "light": "2:30",
+       "medium": "3:00",
+       "strong": "3:30"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Yellow",
+   "name": "Gelber Tee China Kekecha",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2.25 tsp (~3.5 g) · light 2 / strong 2.75",
+     "note": "No rinse. 8 infusions.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:45"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.5 tsp (~2.25 g)",
+     "note": "No rinse. 8 infusions.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:45"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "80°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "80°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.25 tsp (~3.5 g)",
+     "note": "1.5 g/tsp (large open leaf). 1L: 2 infusions per charge. If the optional third infusion is thin, use 85°C.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "8:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "7 tsp (~10.5 g) · light 5.5 / strong 8",
+     "note": "1.5 g/tsp (large open leaf). 1L: 2 infusions per charge.",
+     "infusions": [
+      {
+       "temp": "80°C",
+       "light": "1:30",
+       "medium": "2:00",
+       "strong": "3:00"
+      },
+      {
+       "temp": "80°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "White",
+   "name": "2021 Tongmu Guan",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "whole cake (5 g)",
+     "note": "No rinse: the long first steep opens the cake. 9 infusions. Temperature rises to 95°C from infusion 6.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:45",
+       "strong": "2:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "3:30"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "whole cake (5 g)",
+     "note": "One cake = one session. 1L batch not recommended: 5 g/L is too thin. If you break the cake up, lean toward the min times.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "5:00",
+       "medium": "7:00",
+       "strong": "8:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Da Hong Pao",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2.25 tsp (~6.5 g)",
+     "note": "No rinse. 10 solid infusions; the last ones are optional and thin. 60 ml runs 5 to 10 s longer at most steps to offset heat loss and splits the optional tail into two steeps.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:05",
+       "medium": "0:10",
+       "strong": "0:15"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:12",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:45"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:30",
+       "strong": "1:45"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "4:30",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.5 tsp (~4.3 g)",
+     "note": "No rinse. 10 solid infusions; the last ones are optional and thin. 60 ml runs 5 to 10 s longer at most steps to offset heat loss and splits the optional tail into two steeps.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:05",
+       "medium": "0:10",
+       "strong": "0:15"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:35",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "3:30",
+       "strong": "4:30",
+       "optional": true
+      },
+      {
+       "temp": "100°C",
+       "light": "3:30",
+       "medium": "5:00",
+       "strong": "5:30",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.75 tsp (~5 g)",
+     "note": "2.8 g/tsp (strip yancha). 1L: 2 long infusions per charge (fewest-steeps plan). 4 infusions; the mid times follow Seven Cups' 3/3/5/8 min schedule.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "6 tsp (~17 g)",
+     "note": "2.8 g/tsp (strip yancha). 1L: 2 long infusions per charge (fewest-steeps plan).",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Tie Kuan Yin",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.75 tsp (~6 g)",
+     "note": "1:15 ratio, no rinse (infusion 1 at 0:25 opens the balls and is drunk). 12 infusions; the orchid aroma fades before the body does.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:35",
+       "strong": "0:45"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:50",
+       "strong": "2:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "3:30",
+       "strong": "4:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:30",
+       "medium": "5:00",
+       "strong": "5:30"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.25 tsp (~4.4 g)",
+     "note": "1:15 ratio, no rinse (infusion 1 at 0:25 opens the balls and is drunk). 12 infusions; the orchid aroma fades before the body does. From infusion 6, preheat the empty gaiwan before each pour.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:35",
+       "strong": "0:45"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:50",
+       "strong": "2:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "3:30",
+       "strong": "4:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:30",
+       "medium": "5:00",
+       "strong": "5:30"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.5 tsp (~5 g)",
+     "note": "3.5 g/tsp (ball-rolled). 1L: 2 long infusions per charge (fewest-steeps plan; a third is possible but thin). 1L leaf amount Derived; times discussed. Optional 5 to 10 s rinse. If it turns sharp, use 90°C for infusions 1 and 2.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "7:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "5 tsp (~17.5 g)",
+     "note": "3.5 g/tsp (ball-rolled). 1L: 2 long infusions per charge (fewest-steeps plan; a third is possible but thin). 1L leaf amount Derived; times discussed.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Mingjian Jin Xuan",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.75 tsp (~5.5 g)",
+     "note": "Derived schedule, not brewed yet. ~1:16 ratio. Optional brief rinse (pour on, discard at once, no timer). 8 infusions.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:35",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "0:55",
+       "strong": "1:05"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:15",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:35",
+       "strong": "2:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.25 tsp (~3.7 g)",
+     "note": "Derived schedule, not brewed yet. ~1:16 ratio. Optional brief rinse (pour on, discard at once, no timer). 8 infusions.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:35",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:45",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "0:55",
+       "strong": "1:05"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:45",
+       "medium": "1:15",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:35",
+       "strong": "2:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.25 tsp (~6.75 g)",
+     "note": "3 g/tsp (loosely ball-rolled). 1L: 2 infusions per charge; strong leaf (8 tsp) shortens to 3:00 / 5:00. Most cup sources use 100°C; for a softer, more floral cup, use 90°C.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "6 tsp (~18 g) · light 5 / strong 8",
+     "note": "3 g/tsp (loosely ball-rolled). 1L: 2 infusions per charge; strong leaf (8 tsp) shortens to 3:00 / 5:00.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "5:30",
+       "medium": "7:00",
+       "strong": "9:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Mingjian Fancy Oolong Old Style",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2.75 tsp (~6 g)",
+     "note": "1:15 ratio, no rinse. 11 infusions; the first 8 to 9 are strong, 10 and 11 sweet and woody but thin.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:45",
+       "medium": "1:05",
+       "strong": "1:10"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:25",
+       "strong": "1:35"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:50",
+       "strong": "2:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:25",
+       "strong": "3:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:30",
+       "medium": "3:10",
+       "strong": "3:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:10",
+       "strong": "4:30"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.75 tsp (~4 g)",
+     "note": "1:15 ratio, no rinse. 11 infusions; the first 8 to 9 are strong, 10 and 11 sweet and woody but thin.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:45",
+       "medium": "1:05",
+       "strong": "1:10"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:25",
+       "strong": "1:35"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:50",
+       "strong": "2:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:25",
+       "strong": "3:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:30",
+       "medium": "3:10",
+       "strong": "3:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:10",
+       "strong": "4:30"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.75 tsp (~6 g)",
+     "note": "2.25 g/tsp (open coarse strip leaf, not rolled). 1L: 2 long infusions per charge (fewest-steeps plan). 1L leaf amount Derived; times discussed. 3 infusions; skip a fourth.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "8:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "7.5 tsp (~17 g)",
+     "note": "2.25 g/tsp (open coarse strip leaf, not rolled). 1L: 2 long infusions per charge (fewest-steeps plan). 1L leaf amount Derived; times discussed.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "5:30",
+       "medium": "7:00",
+       "strong": "9:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Oriental Beauty",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "3 tsp (~5 g)",
+     "note": "Derived schedule, not brewed yet. No rinse. Lower heat and a longer first steep bring out the honey and muscatel notes (Tea Forum). 6 infusions, 7th optional.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:45"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "2 tsp (~3.3 g)",
+     "note": "Derived schedule, not brewed yet. No rinse. Lower heat and a longer first steep bring out the honey and muscatel notes (Tea Forum). 6 infusions, 7th optional.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:45"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "0:45",
+       "medium": "1:00",
+       "strong": "1:15"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:00",
+       "medium": "1:20",
+       "strong": "1:45"
+      },
+      {
+       "temp": "85°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.75 tsp (~4.4 g)",
+     "note": "1.6 g/tsp (fluffy tippy leaf). 1L: 1 infusion per charge; a second liter is noticeably thin. The light (6 tsp) and strong (10 tsp) amounts were set at 2:30 and 3:30. If the cup is thin, raise to 90°C before going past 4:00.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "8 tsp (~13 g) · light 6 / strong 10",
+     "note": "1.6 g/tsp (fluffy tippy leaf). 1L: 1 infusion per charge; a second liter is noticeably thin. The light (6 tsp) and strong (10 tsp) amounts were set at 2:30 and 3:30.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Red/black",
+   "name": "2026 Dehong Anji Hong Cha",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.5 tsp (~3.75 g) · light 1.4 / strong 1.8",
+     "note": "No rinse. 10 infusions at 100°C, the shop's gaiwan figure for this tea; infusions 1 and 2 follow its 20 s and 15 s. If infusion 1 tastes brisk, use 95°C.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1 tsp (~2.5 g)",
+     "note": "No rinse. 10 infusions at 100°C, the shop's gaiwan figure for this tea; infusions 1 and 2 follow its 20 s and 15 s. If infusion 1 tastes brisk, use 95°C.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.5 tsp (~3.75 g)",
+     "note": "2.5 g/tsp (twisted). 1L: 2 infusions per charge. Sources for this cultivar brew at about 100°C; drop to 95°C if infusion 1 tastes brisk. For Seven Cups' 4-infusion schedule (4/4/5/8 min), use 5 g.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "7:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "4 tsp (~10 g) · light 3 / strong 5",
+     "note": "2.5 g/tsp (twisted). 1L: 2 infusions per charge. Sources for this cultivar brew at about 100°C; drop to 95°C if infusion 1 tastes brisk.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Red/black",
+   "name": "2026 Darjeeling Turzum DJ6",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.5 tsp (~3 g) · light 1.25 / strong 1.75",
+     "note": "Borderline gongfu fit: western is the better default. No rinse. 4 to 5 infusions; the 5th is thin.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:50",
+       "medium": "1:10",
+       "strong": "1:20",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1 tsp (~2 g)",
+     "note": "Borderline gongfu fit: western is the better default. No rinse. 4 to 5 infusions; the 5th is thin.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:50",
+       "medium": "1:10",
+       "strong": "1:20",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.75 tsp (~3.5 g)",
+     "note": "2 g/tsp (flat). 1 infusion per charge; the second is optional and thin. If 95°C tastes astringent, use 90°C with 3:00/4:00/5:00 rather than cutting below 1:30.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "1:30",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "5 tsp (~10 g) · light 4 / strong 6",
+     "note": "2 g/tsp (flat). 1 infusion per charge; the second is optional and thin. If 95°C tastes astringent, use 90°C with 3:00/4:00/5:00 rather than cutting below 1:30.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "1:30",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00",
+       "optional": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Red/black",
+   "name": "Formosa Hongyu Ruby Tea (#18)",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2.25 tsp (~3.5 g) · light 2 / strong 2.75",
+     "note": "No rinse. 8 infusions.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.5 tsp (~2.3 g)",
+     "note": "No rinse. 8 infusions.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.25 tsp (~3.5 g)",
+     "note": "1.5 g/tsp (large open twist). 1L: 2 infusions per charge. Most sources brew infusion 1 below boiling to limit astringency.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "7 tsp (~10.5 g) · light 5.5 / strong 8",
+     "note": "1.5 g/tsp (large open twist). 1L: 2 infusions per charge. Most sources brew infusion 1 below boiling to limit astringency.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Red/black",
+   "name": "Black Currant (flavored)",
+   "methods": [
+    {
+     "name": "Western 350 ml",
+     "amount": "1.5 tsp (~3.75 g)",
+     "note": "2.5 g/tsp (berries may weigh more). 1 infusion per charge; the flavoring washes out. For a stronger cup, add leaf (1.75 tsp, ~4.4 g per 350 ml) rather than steeping past 4:00.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "4 tsp (~10 g) · light 3 / strong 5",
+     "note": "2.5 g/tsp (berries may weigh more). 1 infusion per charge; the flavoring washes out. For a stronger cup, add leaf (1.75 tsp, ~4.4 g per 350 ml) rather than steeping past 4:00.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Dark (shou pu-erh)",
+   "name": "2016 Old Camphor Scent Shou",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.75 tsp (~5 g) · light 1.25 / strong 2",
+     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions. Infusion 12 now reaches its 7:00 ideal (+6 on C).",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "5:30",
+       "medium": "7:00",
+       "strong": "8:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.25 tsp (~3.75 g)",
+     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions. Infusion 12 now reaches its 7:00 ideal (+6 on C).",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:10",
+       "medium": "0:15",
+       "strong": "0:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:15",
+       "medium": "0:20",
+       "strong": "0:25"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:20",
+       "medium": "0:30",
+       "strong": "0:40"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "100°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:00",
+       "medium": "1:10",
+       "strong": "1:20"
+      },
+      {
+       "temp": "100°C",
+       "light": "1:15",
+       "medium": "1:40",
+       "strong": "2:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "5:30",
+       "medium": "7:00",
+       "strong": "8:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.75 tsp (~5 g)",
+     "note": "3 g/tsp (dense; weigh it, the chunks vary). Quick rinse first: pour on, discard after about 10 s. 3 infusions per charge, a fourth is optional.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "7:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "4.75 tsp (~14 g) · light 3.5 / strong 5.75",
+     "note": "3 g/tsp (dense; weigh it, the chunks vary). Quick rinse first: pour on, discard after about 10 s. 3 infusions per charge, a fourth is optional.",
+     "infusions": [
+      {
+       "temp": "100°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "7:00",
+       "optional": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Test",
+   "name": "Quick test",
+   "note": "For checking the alarm quickly.",
+   "methods": [
+    {
+     "name": "5 s steps",
+     "infusions": [
+      {
+       "temp": "–",
+       "light": "0:05",
+       "medium": "0:05",
+       "strong": "0:05"
+      },
+      {
+       "temp": "–",
+       "light": "0:05",
+       "medium": "0:05",
+       "strong": "0:10"
+      },
+      {
+       "temp": "–",
+       "light": "0:05",
+       "medium": "0:10",
+       "strong": "0:15",
+       "optional": true
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }
