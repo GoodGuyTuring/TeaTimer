@@ -2,5 +2,5 @@
     <string name="app_name">Tea Timer</string>
     <string name="widget_name">Tea Timer</string>
     <string name="widget_description">Tap to start the next infusion</string>
-    <string name="widget_tap_hint">Tap to open</string>
+    <string name="widget_choose_hint">Tap to choose a tea</string>
 </resources>

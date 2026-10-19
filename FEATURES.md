@@ -75,9 +75,10 @@ taps without opening the app.
 |---|---|---|
 | **Choose** (starting state) | Browse lists: type → tea → intensity, with a back button | Choosing an intensity moves to **Ready** |
 | **Ready** | Tea, infusion number, next time, **Start** | Start → **Running** |
-| **Running** | Live countdown | (open) see below |
-| **Infusion done** | Alarm rings; widget shows the next time | Dismiss → **Ready** for the next infusion |
-| **Last infusion done** | Alarm rings; widget shows "Finished" | Dismiss → back to **Choose** |
+| **Running** | Live countdown | Tap → **Paused**; double tap → restart this infusion (**Ready**) |
+| **Paused** | Time left | Tap → **Running** again |
+| **Infusion done** | Alarm rings; widget shows the next time | Moves on to **Ready** for the next infusion by itself |
+| **Last infusion done** | Alarm rings | Back to **Choose** by itself |
 
 - **Reset** button, visible in every state except Choose: jumps straight back to
   **Choose**.
@@ -85,21 +86,27 @@ taps without opening the app.
   button in the Choose state that opens the app to pick the sequence. After
   that the widget works exactly as above.
 
+**Decided (2026-10-19)**
+- Tap while running: pause / resume. Double tap: restart the current infusion.
+- The alarm rings for a set time, adjustable in the app: 3, 5, 10 or 15 seconds.
+- The alarm follows the ringer: sound + vibration, vibration only on vibrate,
+  nothing on silent.
+
 **(open)**
-- What does a tap do while a timer is running: nothing, pause, or cancel?
-- Does the alarm stop by itself after a few seconds, or ring until it's dismissed?
-- Sound, vibration, or both? Should it also ring when the phone is on silent?
 - Repeat or skip an infusion (e.g. "+1 infusion", "skip this one")?
+- Choice of alarm sound (the prototype uses the phone's default alarm sound).
 
 ## Suggested build order
 
-1. Install the build tools, build the skeleton and get it onto the phone.
-2. Data: tea type → tea → intensity → times, stored on the phone; import the
-   existing list.
-3. Timer with alarm and notification (Core).
-4. Widget states and Reset (feature 4), first with the "open the app to choose"
+Steps marked ✓ are in the first prototype (0.1.0), not yet tested on the phone.
+
+1. ✓ Install the build tools and build the app. Still to do: get it onto the phone.
+2. Data: tea type → tea → intensity → times. ✓ Format and a sample list are
+   bundled in the app; the real list still needs importing.
+3. ✓ Timer with alarm and notification (Core).
+4. ✓ Widget states and Reset (feature 4), with the "open the app to choose"
    fallback.
-5. Tabs in the app (feature 2).
+5. ✓ Tabs in the app (feature 2).
 6. Responsive widget sizes up to full screen (feature 1).
 7. Browsing inside the widget (feature 4, full version).
 8. GitHub update and file import (feature 3).
