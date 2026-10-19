@@ -29,6 +29,17 @@ tried on a phone yet**. The tea list is a bundled sample
 (`app/src/main/assets/teas.json`), including a "Test" tea with 5-second steps for
 checking the alarm quickly.
 
+## Installing on the phone (Obtainium)
+
+Releases are published on GitHub with the APK attached. [Obtainium](https://github.com/ImranR98/Obtainium)
+installs them and checks for updates:
+
+1. Install Obtainium (from F-Droid, or the APK from its GitHub releases page).
+2. In Obtainium, tap **Add app** and enter `https://github.com/GoodGuyTuring/TeaTimer`.
+3. Tap **Install**, and allow Obtainium to install apps when GrapheneOS asks.
+
+When a new release is out, Obtainium shows an update; one tap installs it.
+
 ## Building
 
 Needs JDK 21 and the Android SDK. `local.properties` (not in Git) points to the SDK.
@@ -37,9 +48,24 @@ Needs JDK 21 and the Android SDK. `local.properties` (not in Git) points to the 
 ./gradlew testDebugUnitTest assembleDebug
 ```
 
-The APK lands in `app/build/outputs/apk/debug/app-debug.apk`. Install it on the phone by
-copying it over and opening it (allow installing from that app when GrapheneOS asks),
-or with `adb install` over USB.
+The debug APK lands in `app/build/outputs/apk/debug/app-debug.apk`.
+
+## Releasing
+
+Release builds are signed with `release.jks`; its password is in `keystore.properties`.
+Both are on the development PC only (never in Git). **Keep a backup of both files**:
+Android only installs updates signed with the same key, so losing it means uninstalling
+the app (and its settings) before the next version can be installed.
+
+1. Raise `versionCode` and `versionName` in `app/build.gradle.kts`, commit and push.
+2. Build: `./gradlew testDebugUnitTest assembleRelease`
+3. Publish with the APK attached (Obtainium picks up the newest release):
+
+```bash
+gh release create v0.1.0 TeaTimer-0.1.0.apk --title "Tea Timer 0.1.0" --notes "…"
+```
+
+where `TeaTimer-0.1.0.apk` is a renamed copy of `app/build/outputs/apk/release/app-release.apk`.
 
 ## Project layout
 
