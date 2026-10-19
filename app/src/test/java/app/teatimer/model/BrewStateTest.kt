@@ -1,5 +1,6 @@
 package app.teatimer.model
 
+import app.teatimer.brew.BrewController
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -51,6 +52,14 @@ class BrewStateTest {
         assertEquals(1, next.step)
         assertEquals(BrewState.Phase.READY, next.phase)
         assertEquals(ready.sequenceId, next.sequenceId)
+    }
+
+    @Test
+    fun `widget ring chip cycles through the durations`() {
+        assertEquals(5, BrewController.nextRingSeconds(3))
+        assertEquals(15, BrewController.nextRingSeconds(10))
+        assertEquals(3, BrewController.nextRingSeconds(15))
+        assertEquals(3, BrewController.nextRingSeconds(7))
     }
 
     @Test

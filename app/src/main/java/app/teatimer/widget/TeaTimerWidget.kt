@@ -7,9 +7,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.glance.ColorFilter
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
+import androidx.glance.Image
+import androidx.glance.ImageProvider
 import androidx.glance.LocalContext
 import androidx.glance.action.ActionParameters
 import androidx.glance.action.actionParametersOf
@@ -32,6 +35,7 @@ import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.padding
+import androidx.glance.layout.size
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
@@ -49,6 +53,7 @@ import app.teatimer.model.formatSteep
  * - No tea chosen: a tap opens the app to choose one.
  * - Tea chosen: a tap starts, pauses or resumes the infusion; a double tap restarts it.
  *   The ✕ goes back to choosing.
+ * - The bell chip cycles the ring duration (3 → 5 → 10 → 15 s), as in the app.
  */
 class TeaTimerWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
@@ -56,9 +61,10 @@ class TeaTimerWidget : GlanceAppWidget() {
         provideContent {
             val state by controller.state.collectAsState()
             val library by controller.libraryFlow.collectAsState()
+            val ringSeconds by controller.ringSeconds.collectAsState()
             GlanceTheme {
                 val sequence = state.sequenceId?.let { library[it] }
-                if (sequence == null) ChooseContent() else BrewContent(sequence, state)
+                if (sequence == null) ChooseContent(ringSeconds) else BrewContent(sequence, state, ringSeconds)
             }
         }
     }
@@ -72,15 +78,15 @@ private val widgetModifier: GlanceModifier
         .padding(12.dp)
 
 @Composable
-private fun ChooseContent() {
+private fun ChooseContent(ringSeconds: Int) {
     val context = LocalContext.current
     Column(
         modifier = widgetModifier.clickable(
             actionStartActivity<MainActivity>(actionParametersOf(FromWidgetKey to true)),
         ),
-        verticalAlignment = Alignment.CenterVertically,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Spacer(GlanceModifier.defaultWeight())
         Text(
             text = context.getString(R.string.app_name),
             style = TextStyle(color = GlanceTheme.colors.onSurface, fontWeight = FontWeight.Bold, fontSize = 16.sp),
@@ -89,11 +95,37 @@ private fun ChooseContent() {
             text = context.getString(R.string.widget_choose_hint),
             style = TextStyle(color = GlanceTheme.colors.onSurfaceVariant),
         )
+        Spacer(GlanceModifier.defaultWeight())
+        RingChip(ringSeconds)
+    }
+}
+
+/** Shows the ring duration; a tap switches to the next one. */
+@Composable
+private fun RingChip(ringSeconds: Int) {
+    Row(
+        modifier = GlanceModifier
+            .cornerRadius(10.dp)
+            .background(GlanceTheme.colors.secondaryContainer)
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable(actionRunCallback<CycleRingAction>()),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            provider = ImageProvider(R.drawable.ic_ring),
+            contentDescription = "Ring duration",
+            colorFilter = ColorFilter.tint(GlanceTheme.colors.onSecondaryContainer),
+            modifier = GlanceModifier.size(14.dp),
+        )
+        Text(
+            text = " $ringSeconds s",
+            style = TextStyle(color = GlanceTheme.colors.onSecondaryContainer, fontSize = 12.sp),
+        )
     }
 }
 
 @Composable
-private fun BrewContent(sequence: BrewingSequence, state: BrewState) {
+private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds: Int) {
     val context = LocalContext.current
     Column(
         modifier = widgetModifier.clickable(actionRunCallback<TapAction>()),
@@ -106,6 +138,7 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState) {
                 modifier = GlanceModifier.defaultWeight(),
                 style = TextStyle(color = GlanceTheme.colors.onSurface, fontWeight = FontWeight.Bold),
             )
+            RingChip(ringSeconds)
             Box(
                 modifier = GlanceModifier.padding(start = 8.dp).clickable(actionRunCallback<ResetAction>()),
             ) {
@@ -167,6 +200,12 @@ val FromWidgetKey = ActionParameters.Key<Boolean>(MainActivity.EXTRA_FROM_WIDGET
 class TapAction : ActionCallback {
     override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
         BrewController.get(context).tap()
+    }
+}
+
+class CycleRingAction : ActionCallback {
+    override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
+        BrewController.get(context).cycleRingSeconds()
     }
 }
 

@@ -157,7 +157,7 @@ fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
                     }
                 },
             )
-            RingDurationSetting(ringSeconds, onChange = controller::setRingSeconds)
+            RingDurationSetting(ringSeconds, onChange = { scope.launch { controller.setRingSeconds(it) } })
         }
     }
 }

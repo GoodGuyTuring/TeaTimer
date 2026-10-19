@@ -18,6 +18,7 @@ Built for GrapheneOS. It needs no Google services.
   - **Tap:** start the infusion. Tap again to pause or resume.
   - **Double tap:** restart the current infusion.
   - **✕:** stop and go back to choosing a tea.
+  - **🔔 chip:** switch the ring duration (3 → 5 → 10 → 15 s); same setting as in the app.
 - When an infusion is done, the phone rings for 3, 5, 10 or 15 seconds (set in the app),
   following the ringer mode, and the widget lines up the next time. After the last
   infusion it goes back to choosing.

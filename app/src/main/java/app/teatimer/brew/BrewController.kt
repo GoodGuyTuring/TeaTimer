@@ -74,10 +74,14 @@ class BrewController private constructor(private val context: Context) {
     /** Back to the starting "choose a tea" state. */
     suspend fun stop() = update { BrewState() }
 
-    fun setRingSeconds(seconds: Int) {
+    suspend fun setRingSeconds(seconds: Int) {
         prefs.edit { putInt(KEY_RING_SECONDS, seconds) }
         _ringSeconds.value = seconds
+        TeaTimerWidget().updateAll(context)
     }
+
+    /** Widget ring chip: 3 → 5 → 10 → 15 → 3 s. */
+    suspend fun cycleRingSeconds() = setRingSeconds(nextRingSeconds(ringSeconds.value))
 
     /**
      * Downloads the tea list from the tea list repo and keeps it for next time.
@@ -197,6 +201,9 @@ class BrewController private constructor(private val context: Context) {
         private const val KEY_RING_SECONDS = "ring_seconds"
         const val DEFAULT_RING_SECONDS = 5
         val RING_SECONDS_OPTIONS = listOf(3, 5, 10, 15)
+
+        fun nextRingSeconds(current: Int): Int =
+            RING_SECONDS_OPTIONS[(RING_SECONDS_OPTIONS.indexOf(current) + 1) % RING_SECONDS_OPTIONS.size]
 
         private const val DOUBLE_TAP_MS = 600L
         private const val ALARM_TOLERANCE_MS = 2_000L
