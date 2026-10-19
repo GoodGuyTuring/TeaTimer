@@ -1,6 +1,7 @@
 package app.teatimer.widget
 
 import android.content.Context
+import android.util.TypedValue
 import android.widget.RemoteViews
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -194,6 +195,8 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
         )
         // The time gets all the free space and sits in its centre, the same box in every phase,
         // so the running countdown doesn't move away from where the ready/paused time was.
+        val showHint = LocalSize.current.height >= HINT_MIN_HEIGHT
+        val timeSize = timeSizeDp(LocalSize.current.width.value, LocalSize.current.height.value, showHint)
         Box(
             modifier = GlanceModifier.defaultWeight().fillMaxWidth(),
             contentAlignment = Alignment.Center,
@@ -203,15 +206,16 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
                     remoteViews = RemoteViews(context.packageName, R.layout.widget_countdown).apply {
                         setChronometer(R.id.countdown, state.endsAt, null, true)
                         setChronometerCountDown(R.id.countdown, true)
+                        setTextViewTextSize(R.id.countdown, TypedValue.COMPLEX_UNIT_DIP, timeSize)
                         colors.countdownArgb?.let { setTextColor(R.id.countdown, it) }
                     },
                     modifier = GlanceModifier.fillMaxSize(),
                 )
-                BrewState.Phase.READY -> BigTime(formatSteep(step.seconds))
-                BrewState.Phase.PAUSED -> BigTime(formatRemaining(state.remainingMs))
+                BrewState.Phase.READY -> BigTime(formatSteep(step.seconds), timeSize)
+                BrewState.Phase.PAUSED -> BigTime(formatRemaining(state.remainingMs), timeSize)
             }
         }
-        if (LocalSize.current.height >= HINT_MIN_HEIGHT) {
+        if (showHint) {
             Text(
                 text = when (state.phase) {
                     BrewState.Phase.READY -> "Tap to start"
@@ -246,13 +250,46 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
     }
 }
 
+/** The ready/paused time, at [sizeDp] like the running countdown (whatever the phone's font scale). */
 @Composable
-private fun BigTime(text: String) {
+private fun BigTime(text: String, sizeDp: Float) {
+    val fontScale = LocalContext.current.resources.configuration.fontScale
     Text(
         text = text,
-        style = TextStyle(color = LocalWidgetColors.current.text, fontWeight = FontWeight.Bold, fontSize = 40.sp),
+        maxLines = 1,
+        style = TextStyle(
+            color = LocalWidgetColors.current.text,
+            fontWeight = FontWeight.Bold,
+            fontSize = (sizeDp / fontScale).sp,
+        ),
     )
 }
+
+/**
+ * Font size (dp) for the big time: as wide as the widget allows with a small gap at each
+ * side, but never so tall that it crowds out the lines above and the button row below.
+ * Sized for five characters ("00:25", the running countdown's format) so ready, paused
+ * and running all use the same size.
+ */
+internal fun timeSizeDp(widthDp: Float, heightDp: Float, showHint: Boolean): Float {
+    val byWidth = (widthDp - 2 * WIDGET_PADDING_DP - 2 * TIME_GAP_DP) / TIME_WIDTH_EM
+    val reserved = 2 * WIDGET_PADDING_DP + TOP_LINES_DP + BUTTON_ROW_DP + if (showHint) HINT_DP else 0f
+    val byHeight = (heightDp - reserved) / TIME_LINE_HEIGHT_EM
+    return minOf(byWidth, byHeight).coerceIn(TIME_MIN_DP, TIME_MAX_DP)
+}
+
+private const val WIDGET_PADDING_DP = 12f
+private const val TIME_GAP_DP = 8f
+/** Width of "00:25" in bold digits, in font sizes (digits ≈ 0.6, colon ≈ 0.3, plus some slack). */
+private const val TIME_WIDTH_EM = 2.8f
+/** Text line height in font sizes, including the font's built-in padding. */
+private const val TIME_LINE_HEIGHT_EM = 1.25f
+/** Title row and the two info lines above the time. */
+private const val TOP_LINES_DP = 62f
+private const val BUTTON_ROW_DP = 32f
+private const val HINT_DP = 22f
+private const val TIME_MIN_DP = 28f
+private const val TIME_MAX_DP = 220f
 
 /** Shows the ring duration; a tap switches to the next one. */
 @Composable

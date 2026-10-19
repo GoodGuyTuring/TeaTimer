@@ -48,6 +48,19 @@ class WidgetLayoutTest {
     }
 
     @Test
+    fun `the time grows with the widget, the same size ready and running`() = runBlocking {
+        controller.select(controller.library.sequences.first().id)
+        fun readyTime(view: View) = findAll(view).filterIsInstance<TextView>().single { TIME.matches(it.text) }
+        val small = readyTime(render(DpSize(260.dp, 480.dp))).textSize
+        val large = readyTime(render(DpSize(400.dp, 480.dp))).textSize
+        assertTrue("ready time $small px at 260 dp wide, $large px at 400 dp", large > small * 1.3f)
+
+        controller.toggle()
+        val running = render(DpSize(400.dp, 480.dp)).findViewById<TextView>(R.id.countdown).textSize
+        assertEquals("running countdown size", large.toDouble(), running.toDouble(), 1.0)
+    }
+
+    @Test
     fun `short widget leaves out the hint line`() = runBlocking {
         controller.select(controller.library.sequences.first().id)
         val texts = findAll(render(DpSize(260.dp, 150.dp))).filterIsInstance<TextView>().map { it.text.toString() }
