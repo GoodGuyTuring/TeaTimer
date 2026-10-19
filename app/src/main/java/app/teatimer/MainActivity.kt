@@ -1,6 +1,7 @@
 package app.teatimer
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -10,9 +11,12 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +27,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -54,7 +59,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -67,6 +76,7 @@ import app.teatimer.brew.BrewController
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
 import app.teatimer.model.TeaLibrary
+import app.teatimer.model.WidgetBackground
 import app.teatimer.model.formatRemaining
 import app.teatimer.model.formatSteep
 import app.teatimer.ui.theme.TeaTimerTheme
@@ -74,17 +84,25 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    /** Opened from the widget to choose a tea: the main button says "Select" and closes the app. */
+    private var fromWidget by mutableStateOf(false)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val controller = BrewController.get(this)
-        val fromWidget = intent.getBooleanExtra(EXTRA_FROM_WIDGET, false)
+        fromWidget = intent.getBooleanExtra(EXTRA_FROM_WIDGET, false)
         setContent {
             TeaTimerTheme {
-                // Opened from the widget to pick a tea: go straight back to the home screen once picked.
-                TeaTimerApp(controller, onSequenceChosen = { if (fromWidget) finish() })
+                TeaTimerApp(controller, fromWidget = fromWidget, onSelect = { finish() })
             }
         }
+    }
+
+    // singleTask: a widget tap while the app is still open arrives here instead of in onCreate.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        fromWidget = intent.getBooleanExtra(EXTRA_FROM_WIDGET, false)
     }
 
     companion object {
@@ -94,10 +112,11 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
+fun TeaTimerApp(controller: BrewController, fromWidget: Boolean, onSelect: () -> Unit) {
     val state by controller.state.collectAsState()
     val library by controller.libraryFlow.collectAsState()
     val ringSeconds by controller.ringSeconds.collectAsState()
+    val widgetBackground by controller.widgetBackground.collectAsState()
     val scope = rememberCoroutineScope()
     val snackbar = remember { SnackbarHostState() }
     var updating by remember { mutableStateOf(false) }
@@ -141,6 +160,8 @@ fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
                 BrewCard(
                     sequence = sequence,
                     state = state,
+                    selectMode = fromWidget && state.phase == BrewState.Phase.READY,
+                    onSelect = onSelect,
                     onToggle = { scope.launch { controller.toggle() } },
                     onRestart = { scope.launch { controller.resetInfusion() } },
                     onStop = { scope.launch { controller.stop() } },
@@ -150,14 +171,10 @@ fun TeaTimerApp(controller: BrewController, onSequenceChosen: () -> Unit) {
                 library = library,
                 selectedId = state.sequenceId,
                 modifier = Modifier.weight(1f),
-                onChoose = { sequence ->
-                    scope.launch {
-                        controller.select(sequence.id)
-                        onSequenceChosen()
-                    }
-                },
+                onChoose = { sequence -> scope.launch { controller.select(sequence.id) } },
             )
             RingDurationSetting(ringSeconds, onChange = { scope.launch { controller.setRingSeconds(it) } })
+            WidgetBackgroundSetting(widgetBackground, onChange = { scope.launch { controller.setWidgetBackground(it) } })
         }
     }
 }
@@ -169,6 +186,8 @@ private fun describe(library: TeaLibrary): String =
 private fun BrewCard(
     sequence: BrewingSequence,
     state: BrewState,
+    selectMode: Boolean,
+    onSelect: () -> Unit,
     onToggle: () -> Unit,
     onRestart: () -> Unit,
     onStop: () -> Unit,
@@ -232,14 +251,19 @@ private fun BrewCard(
                 )
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = onToggle) {
-                    Text(
-                        when (state.phase) {
-                            BrewState.Phase.READY -> "Start"
-                            BrewState.Phase.RUNNING -> "Pause"
-                            BrewState.Phase.PAUSED -> "Resume"
-                        },
-                    )
+                if (selectMode) {
+                    // Chosen from the widget: keep it ready there and go back to the home screen.
+                    Button(onClick = onSelect) { Text("Select") }
+                } else {
+                    Button(onClick = onToggle) {
+                        Text(
+                            when (state.phase) {
+                                BrewState.Phase.READY -> "Start"
+                                BrewState.Phase.RUNNING -> "Pause"
+                                BrewState.Phase.PAUSED -> "Resume"
+                            },
+                        )
+                    }
                 }
                 OutlinedButton(onClick = onRestart, enabled = state.phase != BrewState.Phase.READY) {
                     Text("Restart")
@@ -321,6 +345,55 @@ private fun RingDurationSetting(ringSeconds: Int, onChange: (Int) -> Unit) {
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 ) {
                     Text("$seconds s")
+                }
+            }
+        }
+    }
+}
+
+/** Background colour of the home screen widget; each swatch previews its text colour. */
+@Composable
+private fun WidgetBackgroundSetting(selected: WidgetBackground, onChange: (WidgetBackground) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Column {
+            Text("Widget")
+            Text(
+                selected.label,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Row(
+            modifier = Modifier.horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            WidgetBackground.entries.forEach { background ->
+                val isSelected = background == selected
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .background(background.background?.let { Color(it) } ?: MaterialTheme.colorScheme.surfaceContainerHighest)
+                        .border(
+                            width = if (isSelected) 3.dp else 1.dp,
+                            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
+                            shape = CircleShape,
+                        )
+                        .clickable { onChange(background) }
+                        .semantics { contentDescription = background.label },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        if (background == WidgetBackground.WALLPAPER) "A" else "Aa",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = background.text?.let { Color(it) } ?: MaterialTheme.colorScheme.onSurface,
+                    )
                 }
             }
         }

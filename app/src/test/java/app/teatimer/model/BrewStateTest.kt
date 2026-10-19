@@ -55,6 +55,23 @@ class BrewStateTest {
     }
 
     @Test
+    fun `previous and next jump to another infusion, ready to start`() {
+        val running = ready.copy(step = 2).tap(now = 0, stepMs = 15_000)
+        val next = running.goTo(3, stepCount = 5)
+        assertEquals(3, next.step)
+        assertEquals(BrewState.Phase.READY, next.phase)
+        assertEquals(1, running.goTo(1, stepCount = 5).step)
+    }
+
+    @Test
+    fun `previous and next do nothing past either end`() {
+        val first = ready.tap(now = 0, stepMs = 15_000)
+        assertEquals(first, first.goTo(-1, stepCount = 5))
+        val last = ready.copy(step = 4)
+        assertEquals(last, last.goTo(5, stepCount = 5))
+    }
+
+    @Test
     fun `widget ring chip cycles through the durations`() {
         assertEquals(5, BrewController.nextRingSeconds(3))
         assertEquals(15, BrewController.nextRingSeconds(10))

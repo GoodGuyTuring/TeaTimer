@@ -11,14 +11,16 @@ Built for GrapheneOS. It needs no Google services.
   (*Light / Medium / Strong*), with its steep times and temperatures
   (for example `0:15, 0:20, 0:25 … 7:00`).
 - **Choose a tea** in the app (one tab per tea type), or tap the widget to open the app
-  and choose. Once you've chosen, the app closes again.
+  and choose; there, **Select** closes the app again and leaves the tea ready on the widget.
 - The tea list comes from the [TeaTimerTimes](https://github.com/GoodGuyTuring/TeaTimerTimes)
   repo; **Update teas** in the app downloads the latest version.
 - The **widget** then shows the tea, the infusion number and the next time:
   - **Tap:** start the infusion. Tap again to pause or resume.
   - **Double tap:** restart the current infusion.
   - **✕:** stop and go back to choosing a tea.
-  - **🔔 chip:** switch the ring duration (3 → 5 → 10 → 15 s); same setting as in the app.
+  - **Bottom row:** ‹ Prev / Next › jump to the previous or next infusion; the 🔔 chip
+    switches the ring duration (3 → 5 → 10 → 15 s), same setting as in the app.
+  - The widget's **background colour** is chosen in the app (Wallpaper or a fixed colour).
 - When an infusion is done, the phone rings for 3, 5, 10 or 15 seconds (set in the app),
   following the ringer mode, and the widget lines up the next time. After the last
   infusion it goes back to choosing.

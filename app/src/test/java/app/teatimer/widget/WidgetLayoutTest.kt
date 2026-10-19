@@ -13,6 +13,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.teatimer.R
 import app.teatimer.brew.BrewController
+import app.teatimer.model.WidgetBackground
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -34,7 +35,33 @@ class WidgetLayoutTest {
     private val controller = BrewController.get(context)
 
     @After
-    fun tearDown() = runBlocking { controller.stop() }
+    fun tearDown() = runBlocking {
+        controller.stop()
+        controller.setWidgetBackground(WidgetBackground.WALLPAPER)
+    }
+
+    @Test
+    fun `bottom row has previous, next and the ring duration`() = runBlocking {
+        controller.select(controller.library.sequences.first().id)
+        val texts = findAll(render()).filterIsInstance<TextView>().map { it.text.toString().trim() }
+        assertTrue(texts.toString(), "Prev" in texts && "Next" in texts && "${controller.ringSeconds.value} s" in texts)
+    }
+
+    @Test
+    fun `short widget leaves out the hint line`() = runBlocking {
+        controller.select(controller.library.sequences.first().id)
+        val texts = findAll(render(DpSize(260.dp, 150.dp))).filterIsInstance<TextView>().map { it.text.toString() }
+        assertTrue(texts.toString(), texts.none { it.startsWith("Tap to") })
+    }
+
+    @Test
+    fun `chosen background colours the running countdown too`() = runBlocking {
+        controller.setWidgetBackground(WidgetBackground.TEA_GREEN)
+        controller.select(controller.library.sequences.first().id)
+        controller.toggle()
+        val countdown = render().findViewById<TextView>(R.id.countdown)
+        assertEquals(WidgetBackground.TEA_GREEN.text!!.toInt(), countdown.currentTextColor)
+    }
 
     @Test
     fun `running countdown sits where the ready time sits`() = runBlocking {
@@ -55,12 +82,12 @@ class WidgetLayoutTest {
         assertTrue("hint inside the widget", offset(running, hint) { it.top } + hint.height <= running.height)
     }
 
-    private suspend fun render(): View {
-        val remoteViews = TeaTimerWidget().compose(context, size = SIZE)
+    private suspend fun render(size: DpSize = SIZE): View {
+        val remoteViews = TeaTimerWidget().compose(context, size = size)
         val view = remoteViews.apply(context, FrameLayout(context))
         val density = context.resources.displayMetrics.density
-        val width = (SIZE.width.value * density).toInt()
-        val height = (SIZE.height.value * density).toInt()
+        val width = (size.width.value * density).toInt()
+        val height = (size.height.value * density).toInt()
         view.measure(
             View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
             View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY),

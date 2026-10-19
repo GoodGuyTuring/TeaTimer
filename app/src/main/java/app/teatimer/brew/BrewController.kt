@@ -7,6 +7,7 @@ import androidx.glance.appwidget.updateAll
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
 import app.teatimer.model.TeaLibrary
+import app.teatimer.model.WidgetBackground
 import app.teatimer.model.formatSteep
 import app.teatimer.widget.TeaTimerWidget
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,12 @@ class BrewController private constructor(private val context: Context) {
     private val _ringSeconds = MutableStateFlow(prefs.getInt(KEY_RING_SECONDS, DEFAULT_RING_SECONDS))
     val ringSeconds: StateFlow<Int> = _ringSeconds.asStateFlow()
 
+    private val _widgetBackground = MutableStateFlow(
+        WidgetBackground.entries.firstOrNull { it.name == prefs.getString(KEY_WIDGET_BACKGROUND, null) }
+            ?: WidgetBackground.WALLPAPER,
+    )
+    val widgetBackground: StateFlow<WidgetBackground> = _widgetBackground.asStateFlow()
+
     init {
         Notifications.createChannels(context)
     }
@@ -71,6 +78,10 @@ class BrewController private constructor(private val context: Context) {
 
     suspend fun resetInfusion() = update { it.resetInfusion() }
 
+    suspend fun previousInfusion() = update { it.goTo(it.step - 1, sequenceOf(it)?.steps?.size ?: 0) }
+
+    suspend fun nextInfusion() = update { it.goTo(it.step + 1, sequenceOf(it)?.steps?.size ?: 0) }
+
     /** Back to the starting "choose a tea" state. */
     suspend fun stop() = update { BrewState() }
 
@@ -82,6 +93,12 @@ class BrewController private constructor(private val context: Context) {
 
     /** Widget ring chip: 3 → 5 → 10 → 15 → 3 s. */
     suspend fun cycleRingSeconds() = setRingSeconds(nextRingSeconds(ringSeconds.value))
+
+    suspend fun setWidgetBackground(background: WidgetBackground) {
+        prefs.edit { putString(KEY_WIDGET_BACKGROUND, background.name) }
+        _widgetBackground.value = background
+        TeaTimerWidget().updateAll(context)
+    }
 
     /**
      * Downloads the tea list from the tea list repo and keeps it for next time.
@@ -199,6 +216,7 @@ class BrewController private constructor(private val context: Context) {
 
         private const val KEY_STATE = "state"
         private const val KEY_RING_SECONDS = "ring_seconds"
+        private const val KEY_WIDGET_BACKGROUND = "widget_background"
         const val DEFAULT_RING_SECONDS = 5
         val RING_SECONDS_OPTIONS = listOf(3, 5, 10, 15)
 

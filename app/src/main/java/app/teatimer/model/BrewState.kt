@@ -36,6 +36,13 @@ data class BrewState(
         Phase.PAUSED -> copy(phase = Phase.RUNNING, endsAt = now + remainingMs)
     }
 
+    /**
+     * Previous / Next: jump to another infusion, ready to start. Outside the sequence
+     * nothing changes, so a stray tap at the first or last infusion can't stop a running timer.
+     */
+    fun goTo(step: Int, stepCount: Int): BrewState =
+        if (step in 0 until stepCount) BrewState(sequenceId = sequenceId, step = step) else this
+
     /** Back to the start of the current infusion. */
     fun resetInfusion(): BrewState = copy(phase = Phase.READY, endsAt = 0, remainingMs = 0)
 
