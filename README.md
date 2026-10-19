@@ -16,6 +16,8 @@ Built for GrapheneOS. It needs no Google services.
 - The timer must fire reliably with the screen off (exact alarm + notification).
 - The existing list of brewing parameters is imported once instead of typed in.
 
+The full feature list, open questions and build order are in [FEATURES.md](FEATURES.md).
+
 ## Status
 
 Project skeleton only:
