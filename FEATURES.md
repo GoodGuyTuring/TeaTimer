@@ -39,13 +39,17 @@ The widget can be resized from a small strip up to the full home screen grid.
 
 Goal: you ask Claude for a new tea, and it ends up in the app with little effort.
 
-**Proposed: the tea lists live on GitHub, in this repo.**
+**Proposed: the tea lists live in their own GitHub repo**, separate from the app's
+code. Teas can then change without touching the app, and the app repo can stay
+private.
 
-- Each tea is a small JSON file in a `teas/` folder, with an index file listing
-  all of them.
+- Each tea is a small JSON file, with an index file listing all of them.
 - The app gets an **"Update teas"** button that downloads the index and any new or
-  changed teas from GitHub. The repo would have to be public for this; the tea
+  changed teas from GitHub. The tea repo has to be public for this; the tea
   lists aren't private, so that's fine.
+- The repo address is a setting in the app, so it can be changed later.
+- **(open)** Name of the tea repo (e.g. `TeaTimer-Teas`). It gets created once the
+  JSON format is settled.
 - Adding a new tea would work like this:
   1. You ask Claude for a tea.
   2. Claude writes the JSON file and commits it.
