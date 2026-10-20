@@ -193,11 +193,12 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
             maxLines = 1,
             style = TextStyle(color = colors.subtext, fontSize = 12.sp),
         )
-        // Leaf amount, when it matters: before the first infusion. Same for every strength.
-        val leaf = sequence.amount?.takeIf { state.step == 0 }
-        if (leaf != null) {
+        // Leaf amount, when it matters: on the first infusion. Same for every strength.
+        // The line keeps its space (blank) on later infusions, so the time doesn't shift.
+        val hasLeafLine = sequence.amount != null
+        if (hasLeafLine) {
             Text(
-                text = "Leaf: $leaf",
+                text = if (state.step == 0) "Leaf: ${sequence.amount}" else " ",
                 maxLines = 1,
                 style = TextStyle(color = colors.subtext, fontSize = 12.sp),
             )
@@ -209,7 +210,7 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
             widthDp = LocalSize.current.width.value,
             heightDp = LocalSize.current.height.value,
             showHint = showHint,
-            extraLines = if (leaf != null) 1 else 0,
+            extraLines = if (hasLeafLine) 1 else 0,
         )
         Box(
             modifier = GlanceModifier.defaultWeight().fillMaxWidth(),

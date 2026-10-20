@@ -72,6 +72,21 @@ class WidgetLayoutTest {
     }
 
     @Test
+    fun `the time stays put between the first and later infusions`() = runBlocking {
+        val sequence = controller.library.sequences.first { it.amount != null && it.steps.size > 1 }
+        controller.select(sequence.id)
+        val first = render()
+        val firstTime = findAll(first).filterIsInstance<TextView>().single { TIME.matches(it.text) }
+
+        controller.nextInfusion()
+        val second = render()
+        val secondTime = findAll(second).filterIsInstance<TextView>().single { TIME.matches(it.text) }
+
+        assertEquals("vertical centre", centreY(first, firstTime).toDouble(), centreY(second, secondTime).toDouble(), 1.0)
+        assertEquals("text size", firstTime.textSize.toDouble(), secondTime.textSize.toDouble(), 0.5)
+    }
+
+    @Test
     fun `short widget leaves out the hint line`() = runBlocking {
         controller.select(controller.library.sequences.first().id)
         val texts = findAll(render(DpSize(260.dp, 150.dp))).filterIsInstance<TextView>().map { it.text.toString() }
