@@ -20,6 +20,11 @@ class TimeSizeTest {
     }
 
     @Test
+    fun `an extra info line takes room from a height-limited time`() {
+        assertTrue(timeSizeDp(500f, 200f, false, extraLines = 1) < timeSizeDp(500f, 200f, false))
+    }
+
+    @Test
     fun `wider widget, bigger time`() {
         assertTrue(timeSizeDp(400f, 600f, true) > timeSizeDp(260f, 600f, true))
     }

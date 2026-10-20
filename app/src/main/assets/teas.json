@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "Oct 17, 2026",
+ "updated": "Oct 20, 2026",
  "teas": [
   {
    "type": "Green",
@@ -15,31 +15,31 @@
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "0:50"
+       "strong": "0:55"
       },
       {
        "temp": "80°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:30",
-       "strong": "2:00"
+       "strong": "1:50"
       }
      ]
     },
@@ -52,31 +52,31 @@
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "0:50"
+       "strong": "0:55"
       },
       {
        "temp": "80°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:30",
-       "strong": "2:00"
+       "strong": "1:50"
       }
      ]
     },
@@ -108,8 +108,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "9 tsp (~18 g) · light 7 / strong 11",
-     "note": "2 g/tsp (flat leaf). 1L: 2 infusions per charge, each a full 1 L; a third liter is optional and thin. Infusions 2 and 3 at 1 L are Derived.",
+     "amount": "9 tsp (~18 g)",
+     "note": "2 g/tsp (flat leaf). 1L: 2 infusions per charge, each a full 1 L; a third liter is optional and thin. Infusions 2 and 3 at 1 L are Derived. Leaf for a lighter or stronger cup with the Medium times: light 7 / strong 11 tsp.",
      "infusions": [
       {
        "temp": "80°C",
@@ -140,8 +140,8 @@
    "methods": [
     {
      "name": "Western 350 ml",
-     "amount": "2.25 tsp (~4.5 g) · light 1.75 / strong 3",
-     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15. The third infusion is optional and thin.",
+     "amount": "2.25 tsp (~4.5 g)",
+     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15. Leaf for a lighter or stronger cup with the Medium times: light 1.75 / strong 3 tsp. The third infusion is optional and thin.",
      "infusions": [
       {
        "temp": "80°C",
@@ -166,8 +166,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "9 tsp (~18 g) · light 7 / strong 11",
-     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15.",
+     "amount": "9 tsp (~18 g)",
+     "note": "2 g/tsp (wiry leaf). 1L: 2 infusions per charge; strong leaf shortens infusion 1 to 1:15. Leaf for a lighter or stronger cup with the Medium times: light 7 / strong 11 tsp.",
      "infusions": [
       {
        "temp": "80°C",
@@ -198,7 +198,7 @@
        "temp": "85°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "85°C",
@@ -208,9 +208,9 @@
       },
       {
        "temp": "85°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "85°C",
@@ -226,22 +226,22 @@
       },
       {
        "temp": "85°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       }
      ]
     },
     {
      "name": "Gongfu 60 ml",
-     "amount": "1.25 tsp (~3.1 g) · Derived amount",
-     "note": "Borderline gongfu fit: western is the better default. 1:18 ratio, no rinse. Pour down the gaiwan wall, not onto the buds. 6 infusions; the 6th is thin.",
+     "amount": "1.25 tsp (~3.1 g)",
+     "note": "Borderline gongfu fit: western is the better default. 1:18 ratio, no rinse. Pour down the gaiwan wall, not onto the buds. 6 infusions; the 6th is thin. Derived amount.",
      "infusions": [
       {
        "temp": "85°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "85°C",
@@ -251,9 +251,9 @@
       },
       {
        "temp": "85°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "85°C",
@@ -269,9 +269,9 @@
       },
       {
        "temp": "85°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       }
      ]
     },
@@ -328,7 +328,7 @@
        "temp": "75°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "75°C",
@@ -338,9 +338,9 @@
       },
       {
        "temp": "75°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
@@ -365,7 +365,7 @@
        "temp": "75°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "75°C",
@@ -375,9 +375,9 @@
       },
       {
        "temp": "75°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
@@ -421,8 +421,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "6 tsp (~14 g) · light 5 / strong 7.5",
-     "note": "2.3 g/tsp (curly needle leaf). 1L: 2 infusions per charge, each a full 1 L at 75°C; 14 g/L sits in the 12 to 15 g/L specialist band. Both 1 L infusions are Derived.",
+     "amount": "6 tsp (~14 g)",
+     "note": "2.3 g/tsp (curly needle leaf). 1L: 2 infusions per charge, each a full 1 L at 75°C; 14 g/L sits in the 12 to 15 g/L specialist band. Both 1 L infusions are Derived. Leaf for a lighter or stronger cup with the Medium times: light 5 / strong 7.5 tsp.",
      "infusions": [
       {
        "temp": "75°C",
@@ -446,8 +446,8 @@
    "methods": [
     {
      "name": "Gongfu 90 ml",
-     "amount": "2.25 tsp (~3.5 g) · light 2 / strong 2.75",
-     "note": "No rinse. 8 infusions.",
+     "amount": "2.25 tsp (~3.5 g)",
+     "note": "No rinse. 8 infusions. Leaf for a lighter or stronger cup with the Medium times: light 2 / strong 2.75 tsp.",
      "infusions": [
       {
        "temp": "80°C",
@@ -463,9 +463,9 @@
       },
       {
        "temp": "80°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:45"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
@@ -481,13 +481,13 @@
       },
       {
        "temp": "80°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "80°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -518,9 +518,9 @@
       },
       {
        "temp": "80°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:45"
+       "strong": "0:35"
       },
       {
        "temp": "80°C",
@@ -536,13 +536,13 @@
       },
       {
        "temp": "80°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "80°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -582,8 +582,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "7 tsp (~10.5 g) · light 5.5 / strong 8",
-     "note": "1.5 g/tsp (large open leaf). 1L: 2 infusions per charge.",
+     "amount": "7 tsp (~10.5 g)",
+     "note": "1.5 g/tsp (large open leaf). 1L: 2 infusions per charge. Leaf for a lighter or stronger cup with the Medium times: light 5.5 / strong 8 tsp.",
      "infusions": [
       {
        "temp": "80°C",
@@ -612,9 +612,9 @@
      "infusions": [
       {
        "temp": "90°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "90°C",
@@ -624,7 +624,7 @@
       },
       {
        "temp": "90°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
        "strong": "0:35"
       },
@@ -636,21 +636,21 @@
       },
       {
        "temp": "90°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       },
       {
        "temp": "95°C",
-       "light": "1:15",
+       "light": "1:25",
        "medium": "1:45",
-       "strong": "2:00"
+       "strong": "2:05"
       },
       {
        "temp": "95°C",
@@ -660,9 +660,9 @@
       },
       {
        "temp": "95°C",
-       "light": "2:00",
+       "light": "2:25",
        "medium": "3:00",
-       "strong": "3:30"
+       "strong": "3:35"
       }
      ]
     },
@@ -704,57 +704,57 @@
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:05",
+       "light": "0:08",
        "medium": "0:10",
-       "strong": "0:15"
+       "strong": "0:12"
       },
       {
        "temp": "100°C",
        "light": "0:10",
        "medium": "0:12",
-       "strong": "0:20"
+       "strong": "0:14"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:45"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "1:00"
+       "strong": "0:55"
       },
       {
        "temp": "100°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:30",
-       "strong": "1:45"
+       "strong": "1:50"
       },
       {
        "temp": "100°C",
@@ -764,9 +764,9 @@
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "3:10",
        "medium": "4:00",
-       "strong": "4:30",
+       "strong": "4:50",
        "optional": true
       }
      ]
@@ -778,27 +778,27 @@
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
-       "light": "0:05",
+       "light": "0:08",
        "medium": "0:10",
-       "strong": "0:15"
+       "strong": "0:12"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
@@ -808,7 +808,7 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:30",
        "medium": "0:35",
        "strong": "0:40"
       },
@@ -820,13 +820,13 @@
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -838,16 +838,16 @@
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "2:50",
        "medium": "3:30",
-       "strong": "4:30",
+       "strong": "4:10",
        "optional": true
       },
       {
        "temp": "100°C",
-       "light": "3:30",
+       "light": "4:00",
        "medium": "5:00",
-       "strong": "5:30",
+       "strong": "6:00",
        "optional": true
       }
      ]
@@ -921,15 +921,15 @@
       },
       {
        "temp": "95°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "95°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "95°C",
@@ -941,31 +941,31 @@
        "temp": "95°C",
        "light": "0:30",
        "medium": "0:35",
-       "strong": "0:45"
+       "strong": "0:40"
       },
       {
        "temp": "95°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "1:00"
+       "strong": "0:55"
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       },
       {
        "temp": "95°C",
-       "light": "1:15",
+       "light": "1:30",
        "medium": "1:50",
-       "strong": "2:00"
+       "strong": "2:10"
       },
       {
        "temp": "95°C",
@@ -975,15 +975,15 @@
       },
       {
        "temp": "95°C",
-       "light": "3:00",
+       "light": "2:50",
        "medium": "3:30",
-       "strong": "4:30"
+       "strong": "4:10"
       },
       {
        "temp": "95°C",
-       "light": "3:30",
+       "light": "4:00",
        "medium": "5:00",
-       "strong": "5:30"
+       "strong": "6:00"
       }
      ]
     },
@@ -1000,15 +1000,15 @@
       },
       {
        "temp": "95°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "95°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "95°C",
@@ -1020,31 +1020,31 @@
        "temp": "95°C",
        "light": "0:30",
        "medium": "0:35",
-       "strong": "0:45"
+       "strong": "0:40"
       },
       {
        "temp": "95°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "1:00"
+       "strong": "0:55"
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       },
       {
        "temp": "95°C",
-       "light": "1:15",
+       "light": "1:30",
        "medium": "1:50",
-       "strong": "2:00"
+       "strong": "2:10"
       },
       {
        "temp": "95°C",
@@ -1054,15 +1054,15 @@
       },
       {
        "temp": "95°C",
-       "light": "3:00",
+       "light": "2:50",
        "medium": "3:30",
-       "strong": "4:30"
+       "strong": "4:10"
       },
       {
        "temp": "95°C",
-       "light": "3:30",
+       "light": "4:00",
        "medium": "5:00",
-       "strong": "5:30"
+       "strong": "6:00"
       }
      ]
     },
@@ -1142,9 +1142,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "1:00"
+       "strong": "0:55"
       },
       {
        "temp": "95°C",
@@ -1154,19 +1154,19 @@
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:05",
        "strong": "1:20"
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "1:00",
        "medium": "1:15",
-       "strong": "1:20"
+       "strong": "1:30"
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:25",
        "strong": "1:40"
       },
@@ -1174,7 +1174,7 @@
        "temp": "95°C",
        "light": "1:15",
        "medium": "1:35",
-       "strong": "2:00"
+       "strong": "1:55"
       }
      ]
     },
@@ -1197,9 +1197,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:30",
+       "light": "0:35",
        "medium": "0:45",
-       "strong": "1:00"
+       "strong": "0:55"
       },
       {
        "temp": "95°C",
@@ -1209,19 +1209,19 @@
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:05",
        "strong": "1:20"
       },
       {
        "temp": "95°C",
-       "light": "0:45",
+       "light": "1:00",
        "medium": "1:15",
-       "strong": "1:20"
+       "strong": "1:30"
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:25",
        "strong": "1:40"
       },
@@ -1229,7 +1229,7 @@
        "temp": "95°C",
        "light": "1:15",
        "medium": "1:35",
-       "strong": "2:00"
+       "strong": "1:55"
       }
      ]
     },
@@ -1261,8 +1261,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "6 tsp (~18 g) · light 5 / strong 8",
-     "note": "3 g/tsp (loosely ball-rolled). 1L: 2 infusions per charge; strong leaf (8 tsp) shortens to 3:00 / 5:00.",
+     "amount": "6 tsp (~18 g)",
+     "note": "3 g/tsp (loosely ball-rolled). 1L: 2 infusions per charge; strong leaf (8 tsp) shortens to 3:00 / 5:00. Leaf for a lighter or stronger cup with the Medium times: light 5 / strong 8 tsp.",
      "infusions": [
       {
        "temp": "95°C",
@@ -1293,7 +1293,7 @@
        "temp": "100°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1303,9 +1303,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1321,39 +1321,39 @@
       },
       {
        "temp": "100°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:05",
-       "strong": "1:10"
+       "strong": "1:20"
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:25",
-       "strong": "1:35"
+       "strong": "1:40"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:30",
        "medium": "1:50",
-       "strong": "2:30"
+       "strong": "2:10"
       },
       {
        "temp": "100°C",
-       "light": "2:00",
+       "light": "1:55",
        "medium": "2:25",
-       "strong": "3:00"
+       "strong": "2:55"
       },
       {
        "temp": "100°C",
        "light": "2:30",
        "medium": "3:10",
-       "strong": "3:30"
+       "strong": "3:50"
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "3:20",
        "medium": "4:10",
-       "strong": "4:30"
+       "strong": "5:00"
       }
      ]
     },
@@ -1366,7 +1366,7 @@
        "temp": "100°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1376,9 +1376,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1394,39 +1394,39 @@
       },
       {
        "temp": "100°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:05",
-       "strong": "1:10"
+       "strong": "1:20"
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "1:10",
        "medium": "1:25",
-       "strong": "1:35"
+       "strong": "1:40"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:30",
        "medium": "1:50",
-       "strong": "2:30"
+       "strong": "2:10"
       },
       {
        "temp": "100°C",
-       "light": "2:00",
+       "light": "1:55",
        "medium": "2:25",
-       "strong": "3:00"
+       "strong": "2:55"
       },
       {
        "temp": "100°C",
        "light": "2:30",
        "medium": "3:10",
-       "strong": "3:30"
+       "strong": "3:50"
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "3:20",
        "medium": "4:10",
-       "strong": "4:30"
+       "strong": "5:00"
       }
      ]
     },
@@ -1487,37 +1487,37 @@
      "infusions": [
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "85°C",
        "light": "0:30",
        "medium": "0:40",
-       "strong": "0:45"
+       "strong": "0:50"
       },
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:40",
        "medium": "0:50",
        "strong": "1:00"
       },
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "85°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       },
       {
        "temp": "85°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -1537,37 +1537,37 @@
      "infusions": [
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "85°C",
        "light": "0:30",
        "medium": "0:40",
-       "strong": "0:45"
+       "strong": "0:50"
       },
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:40",
        "medium": "0:50",
        "strong": "1:00"
       },
       {
        "temp": "85°C",
-       "light": "0:45",
+       "light": "0:50",
        "medium": "1:00",
-       "strong": "1:15"
+       "strong": "1:10"
       },
       {
        "temp": "85°C",
-       "light": "1:00",
+       "light": "1:05",
        "medium": "1:20",
-       "strong": "1:45"
+       "strong": "1:35"
       },
       {
        "temp": "85°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -1601,8 +1601,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "8 tsp (~13 g) · light 6 / strong 10",
-     "note": "1.6 g/tsp (fluffy tippy leaf). 1L: 1 infusion per charge; a second liter is noticeably thin. The light (6 tsp) and strong (10 tsp) amounts were set at 2:30 and 3:30.",
+     "amount": "8 tsp (~13 g)",
+     "note": "1.6 g/tsp (fluffy tippy leaf). 1L: 1 infusion per charge; a second liter is noticeably thin. The light (6 tsp) and strong (10 tsp) amounts were set at 2:30 and 3:30. Leaf for a lighter or stronger cup with the Medium times: light 6 / strong 10 tsp.",
      "infusions": [
       {
        "temp": "85°C",
@@ -1615,31 +1615,504 @@
    ]
   },
   {
+   "type": "Oolong",
+   "name": "Wen-Shan Pouchong",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2.5 tsp (~4.4 g)",
+     "note": "Derived schedule, not brewed yet. 1:20 ratio, as Curious Tea and Path of Cha both give. No rinse: the open strip leaf needs no opening. 90°C (Path of Cha); if late infusions thin out, use 95°C (Curious Tea). 8 infusions. Leaf for a lighter or stronger cup with the Medium times: light 2.25 / strong 2.75 tsp.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:50",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:10",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "1:50",
+       "strong": "2:10"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.75 tsp (~3 g)",
+     "note": "Derived schedule, not brewed yet. 1:20 ratio, as Curious Tea and Path of Cha both give. No rinse: the open strip leaf needs no opening. 90°C (Path of Cha); if late infusions thin out, use 95°C (Curious Tea). 8 infusions.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:50",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:10",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "1:50",
+       "strong": "2:10"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2.25 tsp (~4 g)",
+     "note": "1.75 g/tsp (long, loosely twisted strip; bulky, so weigh it once). Lightly oxidized (about 12 to 20%), so it brews cooler than the rolled oolongs. 1L: 2 infusions per charge; infusion 2 at 1 L is Derived. Sources run 80 to 90°C; if the cup is flat, use 90°C.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "5.75 tsp (~10 g)",
+     "note": "1.75 g/tsp (long, loosely twisted strip; bulky, so weigh it once). Lightly oxidized (about 12 to 20%), so it brews cooler than the rolled oolongs. 1L: 2 infusions per charge; infusion 2 at 1 L is Derived. Leaf for a lighter or stronger cup with the Medium times: light 4.5 / strong 7 tsp.",
+     "infusions": [
+      {
+       "temp": "85°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "85°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "6:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "Schwarzer Drache (Super Fancy)",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "2 tsp (~3.5 g)",
+     "note": "Derived schedule, not brewed yet. About 1:26, no rinse. Tee Kontor Kiel's gaiwan figure is 3 to 4 g per 150 ml at 95°C (60 / 30 / 30 s); this uses more leaf, so 90°C and a shorter first steep. 6 infusions, 7th optional. Leaf for a lighter or stronger cup with the Medium times: light 1.75 / strong 2.5 tsp.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "0:35",
+       "medium": "0:45",
+       "strong": "0:55"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:50",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:10",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "1:50",
+       "strong": "2:10",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1.25 tsp (~2.2 g)",
+     "note": "Derived schedule, not brewed yet. About 1:26, no rinse. Tee Kontor Kiel's gaiwan figure is 3 to 4 g per 150 ml at 95°C (60 / 30 / 30 s); this uses more leaf, so 90°C and a shorter first steep. 6 infusions, 7th optional.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "0:35",
+       "medium": "0:45",
+       "strong": "0:55"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "90°C",
+       "light": "0:50",
+       "medium": "1:05",
+       "strong": "1:20"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:10",
+       "medium": "1:25",
+       "strong": "1:40"
+      },
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "1:50",
+       "strong": "2:10",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "2 tsp (~3.5 g)",
+     "note": "1.75 g/tsp (open, loose leaf with silver tips). A commercial Bai Hao style grade; Tee Kontor Kiel rates its oxidation high and its taste roasted, nutty and mildly sweet. Tee Kontor Kiel brews it at 95°C, 8 g/L, 1:30; most other shops use 80 to 90°C for 2 to 4 min, so 90°C is the start. If the cup is flat, use 95°C with the min time. 1L: 1 infusion per charge; a second liter is optional and thin. 2 infusions, as Tea Fountain gives for the same grade.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "5 tsp (~8.75 g)",
+     "note": "1.75 g/tsp (open, loose leaf with silver tips). A commercial Bai Hao style grade; Tee Kontor Kiel rates its oxidation high and its taste roasted, nutty and mildly sweet. Tee Kontor Kiel brews it at 95°C, 8 g/L, 1:30; most other shops use 80 to 90°C for 2 to 4 min, so 90°C is the start. If the cup is flat, use 95°C with the min time. 1L: 1 infusion per charge; a second liter is optional and thin. Leaf for a lighter or stronger cup with the Medium times: light 4 / strong 6 tsp.",
+     "infusions": [
+      {
+       "temp": "90°C",
+       "light": "1:30",
+       "medium": "2:30",
+       "strong": "3:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00",
+       "optional": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "Oolong",
+   "name": "2021 Shan Lin Xi Black Wulong",
+   "methods": [
+    {
+     "name": "Gongfu 90 ml",
+     "amount": "1.5 tsp (~4.5 g)",
+     "note": "Derived schedule, not brewed yet. 1:20 ratio, no rinse: infusion 1 at 0:30 opens the balls and is drunk (Tee Kontor Kiel steeps the first three at 30 s each, with less leaf). 8 infusions. Leaf for a lighter or stronger cup with the Medium times: light 1.25 / strong 1.75 tsp.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:16",
+       "medium": "0:20",
+       "strong": "0:24"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:55",
+       "medium": "1:10",
+       "strong": "1:25"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:20",
+       "medium": "1:40",
+       "strong": "2:00"
+      }
+     ]
+    },
+    {
+     "name": "Gongfu 60 ml",
+     "amount": "1 tsp (~3 g)",
+     "note": "Derived schedule, not brewed yet. 1:20 ratio, no rinse: infusion 1 at 0:30 opens the balls and is drunk (Tee Kontor Kiel steeps the first three at 30 s each, with less leaf). 8 infusions.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:16",
+       "medium": "0:20",
+       "strong": "0:24"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:20",
+       "medium": "0:25",
+       "strong": "0:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:25",
+       "medium": "0:30",
+       "strong": "0:35"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:30",
+       "medium": "0:40",
+       "strong": "0:50"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:40",
+       "medium": "0:50",
+       "strong": "1:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "0:55",
+       "medium": "1:10",
+       "strong": "1:25"
+      },
+      {
+       "temp": "95°C",
+       "light": "1:20",
+       "medium": "1:40",
+       "strong": "2:00"
+      }
+     ]
+    },
+    {
+     "name": "Western 350 ml",
+     "amount": "1.25 tsp (~3.75 g)",
+     "note": "3 g/tsp (dark, loosely balled leaf). Heavily oxidized, lightly roasted high-mountain Qingxin oolong; Tee Kontor Kiel recommends gongfu and says western works well too. 1L: 2 long infusions per charge (fewest-steeps plan); 1L leaf amount and infusion 2 Derived. The leaf is from 2021; if it tastes flat, use 100°C. 3 infusions; a fourth is optional.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "2:00",
+       "medium": "3:00",
+       "strong": "4:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "3:00",
+       "medium": "4:00",
+       "strong": "5:00"
+      },
+      {
+       "temp": "95°C",
+       "light": "4:00",
+       "medium": "5:00",
+       "strong": "7:00"
+      },
+      {
+       "temp": "100°C",
+       "light": "6:00",
+       "medium": "8:00",
+       "strong": "10:00",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "name": "Western 1 L",
+     "amount": "4.5 tsp (~13.5 g)",
+     "note": "3 g/tsp (dark, loosely balled leaf). Heavily oxidized, lightly roasted high-mountain Qingxin oolong; Tee Kontor Kiel recommends gongfu and says western works well too. 1L: 2 long infusions per charge (fewest-steeps plan); 1L leaf amount and infusion 2 Derived. The leaf is from 2021; if it tastes flat, use 100°C. Leaf for a lighter or stronger cup with the Medium times: light 3.5 / strong 5.5 tsp.",
+     "infusions": [
+      {
+       "temp": "95°C",
+       "light": "2:30",
+       "medium": "3:30",
+       "strong": "4:30"
+      },
+      {
+       "temp": "95°C",
+       "light": "5:00",
+       "medium": "6:00",
+       "strong": "8:00"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "type": "Red/black",
    "name": "2026 Dehong Anji Hong Cha",
    "methods": [
     {
      "name": "Gongfu 90 ml",
-     "amount": "1.5 tsp (~3.75 g) · light 1.4 / strong 1.8",
-     "note": "No rinse. 10 infusions at 100°C, the shop's gaiwan figure for this tea; infusions 1 and 2 follow its 20 s and 15 s. If infusion 1 tastes brisk, use 95°C.",
+     "amount": "1.5 tsp (~3.75 g)",
+     "note": "No rinse. 10 infusions at 100°C, the shop's gaiwan figure for this tea; infusions 1 and 2 follow its 20 s and 15 s. If infusion 1 tastes brisk, use 95°C. Leaf for a lighter or stronger cup with the Medium times: light 1.4 / strong 1.8 tsp.",
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
@@ -1649,9 +2122,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1667,13 +2140,13 @@
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -1692,21 +2165,21 @@
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
@@ -1716,9 +2189,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -1734,13 +2207,13 @@
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -1779,8 +2252,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "4 tsp (~10 g) · light 3 / strong 5",
-     "note": "2.5 g/tsp (twisted). 1L: 2 infusions per charge. Sources for this cultivar brew at about 100°C; drop to 95°C if infusion 1 tastes brisk.",
+     "amount": "4 tsp (~10 g)",
+     "note": "2.5 g/tsp (twisted). 1L: 2 infusions per charge. Sources for this cultivar brew at about 100°C; drop to 95°C if infusion 1 tastes brisk. Leaf for a lighter or stronger cup with the Medium times: light 3 / strong 5 tsp.",
      "infusions": [
       {
        "temp": "100°C",
@@ -1804,14 +2277,14 @@
    "methods": [
     {
      "name": "Gongfu 90 ml",
-     "amount": "1.5 tsp (~3 g) · light 1.25 / strong 1.75",
-     "note": "Borderline gongfu fit: western is the better default. No rinse. 4 to 5 infusions; the 5th is thin.",
+     "amount": "1.5 tsp (~3 g)",
+     "note": "Borderline gongfu fit: western is the better default. No rinse. 4 to 5 infusions; the 5th is thin. Leaf for a lighter or stronger cup with the Medium times: light 1.25 / strong 1.75 tsp.",
      "infusions": [
       {
        "temp": "95°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -1833,9 +2306,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:50",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20",
+       "strong": "1:25",
        "optional": true
       }
      ]
@@ -1849,7 +2322,7 @@
        "temp": "95°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -1871,9 +2344,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:50",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20",
+       "strong": "1:25",
        "optional": true
       }
      ]
@@ -1900,8 +2373,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "5 tsp (~10 g) · light 4 / strong 6",
-     "note": "2 g/tsp (flat). 1 infusion per charge; the second is optional and thin. If 95°C tastes astringent, use 90°C with 3:00/4:00/5:00 rather than cutting below 1:30.",
+     "amount": "5 tsp (~10 g)",
+     "note": "2 g/tsp (flat). 1 infusion per charge; the second is optional and thin. If 95°C tastes astringent, use 90°C with 3:00/4:00/5:00 rather than cutting below 1:30. Leaf for a lighter or stronger cup with the Medium times: light 4 / strong 6 tsp.",
      "infusions": [
       {
        "temp": "95°C",
@@ -1926,14 +2399,14 @@
    "methods": [
     {
      "name": "Gongfu 90 ml",
-     "amount": "2.25 tsp (~3.5 g) · light 2 / strong 2.75",
-     "note": "No rinse. 8 infusions.",
+     "amount": "2.25 tsp (~3.5 g)",
+     "note": "No rinse. 8 infusions. Leaf for a lighter or stronger cup with the Medium times: light 2 / strong 2.75 tsp.",
      "infusions": [
       {
        "temp": "95°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -1943,9 +2416,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -1961,13 +2434,13 @@
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "95°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -1988,7 +2461,7 @@
        "temp": "95°C",
        "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -1998,9 +2471,9 @@
       },
       {
        "temp": "95°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "95°C",
@@ -2016,13 +2489,13 @@
       },
       {
        "temp": "95°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "95°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -2061,8 +2534,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "7 tsp (~10.5 g) · light 5.5 / strong 8",
-     "note": "1.5 g/tsp (large open twist). 1L: 2 infusions per charge. Most sources brew infusion 1 below boiling to limit astringency.",
+     "amount": "7 tsp (~10.5 g)",
+     "note": "1.5 g/tsp (large open twist). 1L: 2 infusions per charge. Most sources brew infusion 1 below boiling to limit astringency. Leaf for a lighter or stronger cup with the Medium times: light 5.5 / strong 8 tsp.",
      "infusions": [
       {
        "temp": "90°C",
@@ -2099,8 +2572,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "4 tsp (~10 g) · light 3 / strong 5",
-     "note": "2.5 g/tsp (berries may weigh more). 1 infusion per charge; the flavoring washes out. For a stronger cup, add leaf (1.75 tsp, ~4.4 g per 350 ml) rather than steeping past 4:00.",
+     "amount": "4 tsp (~10 g)",
+     "note": "2.5 g/tsp (berries may weigh more). 1 infusion per charge; the flavoring washes out. For a stronger cup, add leaf (1.75 tsp, ~4.4 g per 350 ml) rather than steeping past 4:00. Leaf for a lighter or stronger cup with the Medium times: light 3 / strong 5 tsp.",
      "infusions": [
       {
        "temp": "100°C",
@@ -2118,26 +2591,26 @@
    "methods": [
     {
      "name": "Gongfu 90 ml",
-     "amount": "1.75 tsp (~5 g) · light 1.25 / strong 2",
-     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions. Infusion 12 now reaches its 7:00 ideal (+6 on C).",
+     "amount": "1.75 tsp (~5 g)",
+     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions. Leaf for a lighter or stronger cup with the Medium times: light 1.25 / strong 2 tsp.",
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
@@ -2147,9 +2620,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -2165,13 +2638,13 @@
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -2179,44 +2652,44 @@
        "temp": "100°C",
        "light": "2:00",
        "medium": "2:30",
-       "strong": "3:30"
+       "strong": "3:00"
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "3:10",
        "medium": "4:00",
-       "strong": "5:00"
+       "strong": "4:50"
       },
       {
        "temp": "100°C",
-       "light": "5:30",
+       "light": "5:35",
        "medium": "7:00",
-       "strong": "8:00"
+       "strong": "8:25"
       }
      ]
     },
     {
      "name": "Gongfu 60 ml",
      "amount": "1.25 tsp (~3.75 g)",
-     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions. Infusion 12 now reaches its 7:00 ideal (+6 on C).",
+     "note": "Quick rinse first (pour on, discard at once, no timer). 12 infusions.",
      "infusions": [
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:10",
+       "light": "0:12",
        "medium": "0:15",
-       "strong": "0:20"
+       "strong": "0:18"
       },
       {
        "temp": "100°C",
-       "light": "0:15",
+       "light": "0:16",
        "medium": "0:20",
-       "strong": "0:25"
+       "strong": "0:24"
       },
       {
        "temp": "100°C",
@@ -2226,9 +2699,9 @@
       },
       {
        "temp": "100°C",
-       "light": "0:20",
+       "light": "0:25",
        "medium": "0:30",
-       "strong": "0:40"
+       "strong": "0:35"
       },
       {
        "temp": "100°C",
@@ -2244,13 +2717,13 @@
       },
       {
        "temp": "100°C",
-       "light": "1:00",
+       "light": "0:55",
        "medium": "1:10",
-       "strong": "1:20"
+       "strong": "1:25"
       },
       {
        "temp": "100°C",
-       "light": "1:15",
+       "light": "1:20",
        "medium": "1:40",
        "strong": "2:00"
       },
@@ -2258,19 +2731,19 @@
        "temp": "100°C",
        "light": "2:00",
        "medium": "2:30",
-       "strong": "3:30"
+       "strong": "3:00"
       },
       {
        "temp": "100°C",
-       "light": "3:00",
+       "light": "3:10",
        "medium": "4:00",
-       "strong": "5:00"
+       "strong": "4:50"
       },
       {
        "temp": "100°C",
-       "light": "5:30",
+       "light": "5:35",
        "medium": "7:00",
-       "strong": "8:00"
+       "strong": "8:25"
       }
      ]
     },
@@ -2308,8 +2781,8 @@
     },
     {
      "name": "Western 1 L",
-     "amount": "4.75 tsp (~14 g) · light 3.5 / strong 5.75",
-     "note": "3 g/tsp (dense; weigh it, the chunks vary). Quick rinse first: pour on, discard after about 10 s. 3 infusions per charge, a fourth is optional.",
+     "amount": "4.75 tsp (~14 g)",
+     "note": "3 g/tsp (dense; weigh it, the chunks vary). Quick rinse first: pour on, discard after about 10 s. 3 infusions per charge, a fourth is optional. Leaf for a lighter or stronger cup with the Medium times: light 3.5 / strong 5.75 tsp.",
      "infusions": [
       {
        "temp": "100°C",

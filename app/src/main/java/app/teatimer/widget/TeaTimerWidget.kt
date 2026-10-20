@@ -193,10 +193,24 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
             maxLines = 1,
             style = TextStyle(color = colors.subtext, fontSize = 12.sp),
         )
+        // Leaf amount, when it matters: before the first infusion. Same for every strength.
+        val leaf = sequence.amount?.takeIf { state.step == 0 }
+        if (leaf != null) {
+            Text(
+                text = "Leaf: $leaf",
+                maxLines = 1,
+                style = TextStyle(color = colors.subtext, fontSize = 12.sp),
+            )
+        }
         // The time gets all the free space and sits in its centre, the same box in every phase,
         // so the running countdown doesn't move away from where the ready/paused time was.
         val showHint = LocalSize.current.height >= HINT_MIN_HEIGHT
-        val timeSize = timeSizeDp(LocalSize.current.width.value, LocalSize.current.height.value, showHint)
+        val timeSize = timeSizeDp(
+            widthDp = LocalSize.current.width.value,
+            heightDp = LocalSize.current.height.value,
+            showHint = showHint,
+            extraLines = if (leaf != null) 1 else 0,
+        )
         Box(
             modifier = GlanceModifier.defaultWeight().fillMaxWidth(),
             contentAlignment = Alignment.Center,
@@ -271,9 +285,10 @@ private fun BigTime(text: String, sizeDp: Float) {
  * Sized for five characters ("00:25", the running countdown's format) so ready, paused
  * and running all use the same size.
  */
-internal fun timeSizeDp(widthDp: Float, heightDp: Float, showHint: Boolean): Float {
+internal fun timeSizeDp(widthDp: Float, heightDp: Float, showHint: Boolean, extraLines: Int = 0): Float {
     val byWidth = (widthDp - 2 * WIDGET_PADDING_DP - 2 * TIME_GAP_DP) / TIME_WIDTH_EM
-    val reserved = 2 * WIDGET_PADDING_DP + TOP_LINES_DP + BUTTON_ROW_DP + if (showHint) HINT_DP else 0f
+    val reserved = 2 * WIDGET_PADDING_DP + TOP_LINES_DP + extraLines * INFO_LINE_DP + BUTTON_ROW_DP +
+        if (showHint) HINT_DP else 0f
     val byHeight = (heightDp - reserved) / TIME_LINE_HEIGHT_EM
     return minOf(byWidth, byHeight).coerceIn(TIME_MIN_DP, TIME_MAX_DP)
 }
@@ -286,6 +301,8 @@ private const val TIME_WIDTH_EM = 2.8f
 private const val TIME_LINE_HEIGHT_EM = 1.25f
 /** Title row and the two info lines above the time. */
 private const val TOP_LINES_DP = 62f
+/** One more small info line, e.g. the leaf amount on the first infusion. */
+private const val INFO_LINE_DP = 18f
 private const val BUTTON_ROW_DP = 32f
 private const val HINT_DP = 22f
 private const val TIME_MIN_DP = 28f

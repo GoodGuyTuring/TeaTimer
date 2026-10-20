@@ -61,6 +61,17 @@ class WidgetLayoutTest {
     }
 
     @Test
+    fun `leaf amount shows on the first infusion only`() = runBlocking {
+        val sequence = controller.library.sequences.first { it.amount != null && it.steps.size > 1 }
+        controller.select(sequence.id)
+        fun texts() = runBlocking { findAll(render()).filterIsInstance<TextView>().map { it.text.toString() } }
+        assertTrue(texts().toString(), "Leaf: ${sequence.amount}" in texts())
+
+        controller.nextInfusion()
+        assertTrue(texts().toString(), texts().none { it.startsWith("Leaf:") })
+    }
+
+    @Test
     fun `short widget leaves out the hint line`() = runBlocking {
         controller.select(controller.library.sequences.first().id)
         val texts = findAll(render(DpSize(260.dp, 150.dp))).filterIsInstance<TextView>().map { it.text.toString() }
