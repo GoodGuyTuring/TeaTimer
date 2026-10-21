@@ -13,6 +13,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.teatimer.R
 import app.teatimer.brew.BrewController
+import app.teatimer.model.RingDuration
 import app.teatimer.model.WidgetBackground
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -44,7 +45,7 @@ class WidgetLayoutTest {
     fun `bottom row has previous, next and the ring duration`() = runBlocking {
         controller.select(controller.library.sequences.first().id)
         val texts = findAll(render()).filterIsInstance<TextView>().map { it.text.toString().trim() }
-        assertTrue(texts.toString(), "Prev" in texts && "Next" in texts && "${controller.ringSeconds.value} s" in texts)
+        assertTrue(texts.toString(), "Prev" in texts && "Next" in texts && RingDuration.label(controller.ringSetting.value) in texts)
     }
 
     @Test

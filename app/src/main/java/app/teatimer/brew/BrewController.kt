@@ -6,6 +6,7 @@ import androidx.core.content.edit
 import androidx.glance.appwidget.updateAll
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
+import app.teatimer.model.RingDuration
 import app.teatimer.model.TeaLibrary
 import app.teatimer.model.WidgetBackground
 import app.teatimer.model.formatSteep
@@ -40,8 +41,9 @@ class BrewController private constructor(private val context: Context) {
     private val _state = MutableStateFlow(loadState())
     val state: StateFlow<BrewState> = _state.asStateFlow()
 
-    private val _ringSeconds = MutableStateFlow(prefs.getInt(KEY_RING_SECONDS, DEFAULT_RING_SECONDS))
-    val ringSeconds: StateFlow<Int> = _ringSeconds.asStateFlow()
+    /** [RingDuration.AUTO] or a fixed number of seconds. */
+    private val _ringSetting = MutableStateFlow(prefs.getInt(KEY_RING_SETTING, RingDuration.AUTO))
+    val ringSetting: StateFlow<Int> = _ringSetting.asStateFlow()
 
     private val _widgetBackground = MutableStateFlow(
         WidgetBackground.entries.firstOrNull { it.name == prefs.getString(KEY_WIDGET_BACKGROUND, null) }
@@ -85,14 +87,17 @@ class BrewController private constructor(private val context: Context) {
     /** Back to the starting "choose a tea" state. */
     suspend fun stop() = update { BrewState() }
 
-    suspend fun setRingSeconds(seconds: Int) {
-        prefs.edit { putInt(KEY_RING_SECONDS, seconds) }
-        _ringSeconds.value = seconds
+    suspend fun setRingSetting(setting: Int) {
+        prefs.edit { putInt(KEY_RING_SETTING, setting) }
+        _ringSetting.value = setting
         TeaTimerWidget().updateAll(context)
     }
 
-    /** Widget ring chip: 3 → 5 → 10 → 15 → 3 s. */
-    suspend fun cycleRingSeconds() = setRingSeconds(nextRingSeconds(ringSeconds.value))
+    /** Widget ring chip: Auto → 3 → 5 → 10 → 15 s → Auto. */
+    suspend fun cycleRingSetting() = setRingSetting(RingDuration.next(ringSetting.value))
+
+    /** Stops a ringing alarm, e.g. when the app is opened. */
+    fun silenceAlarm() = AlertService.stop(context)
 
     suspend fun setWidgetBackground(background: WidgetBackground) {
         prefs.edit { putString(KEY_WIDGET_BACKGROUND, background.name) }
@@ -135,20 +140,22 @@ class BrewController private constructor(private val context: Context) {
             }
             val next = current.finishInfusion(sequence.steps.size)
             val title = "${sequence.tea}: infusion ${current.step + 1} done"
+            val ringSeconds = RingDuration.resolve(ringSetting.value, sequence.steps[current.step].seconds)
             alert = if (next.isChoosing) {
-                Alert(title, "That was the last infusion.")
+                Alert(title, "That was the last infusion.", ringSeconds)
             } else {
                 val step = sequence.steps[next.step]
                 val temp = step.temp?.let { " at $it" }.orEmpty()
                 val optional = if (step.optional) " (optional)" else ""
-                Alert(title, "Next: ${formatSteep(step.seconds)}$temp$optional. Tap the widget to start.")
+                Alert(title, "Next: ${formatSteep(step.seconds)}$temp$optional. Tap the widget to start.", ringSeconds)
             }
             next
         }
         return alert
     }
 
-    data class Alert(val title: String, val text: String)
+    /** What the alert says, and how long it rings ([RingDuration.UNTIL_STOPPED]: until stopped). */
+    data class Alert(val title: String, val text: String, val ringSeconds: Int)
 
     private suspend fun update(transform: (BrewState) -> BrewState) {
         val changed = mutex.withLock {
@@ -161,7 +168,11 @@ class BrewController private constructor(private val context: Context) {
             }
             new != old
         }
-        if (changed) TeaTimerWidget().updateAll(context)
+        if (changed) {
+            // Starting the next infusion (or any other change) answers a ringing alarm.
+            AlertService.stop(context)
+            TeaTimerWidget().updateAll(context)
+        }
     }
 
     private fun applySideEffects(state: BrewState) {
@@ -219,13 +230,9 @@ class BrewController private constructor(private val context: Context) {
         const val TEAS_URL = "https://raw.githubusercontent.com/GoodGuyTuring/TeaTimerTimes/main/teas.json"
 
         private const val KEY_STATE = "state"
-        private const val KEY_RING_SECONDS = "ring_seconds"
+        /** Replaces "ring_seconds" (before 0.6.0) so everyone starts on Auto. */
+        private const val KEY_RING_SETTING = "ring_setting"
         private const val KEY_WIDGET_BACKGROUND = "widget_background"
-        const val DEFAULT_RING_SECONDS = 5
-        val RING_SECONDS_OPTIONS = listOf(3, 5, 10, 15)
-
-        fun nextRingSeconds(current: Int): Int =
-            RING_SECONDS_OPTIONS[(RING_SECONDS_OPTIONS.indexOf(current) + 1) % RING_SECONDS_OPTIONS.size]
 
         private const val DOUBLE_TAP_MS = 600L
         private const val ALARM_TOLERANCE_MS = 2_000L

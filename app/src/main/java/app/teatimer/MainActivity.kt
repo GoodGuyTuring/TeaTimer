@@ -75,6 +75,7 @@ import androidx.core.content.ContextCompat
 import app.teatimer.brew.BrewController
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
+import app.teatimer.model.RingDuration
 import app.teatimer.model.TeaLibrary
 import app.teatimer.model.WidgetBackground
 import app.teatimer.model.formatRemaining
@@ -99,6 +100,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Opening the app (e.g. from the "infusion done" notification) answers a ringing alarm.
+    override fun onResume() {
+        super.onResume()
+        BrewController.get(this).silenceAlarm()
+    }
+
     // singleTask: a widget tap while the app is still open arrives here instead of in onCreate.
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
@@ -115,7 +122,7 @@ class MainActivity : ComponentActivity() {
 fun TeaTimerApp(controller: BrewController, fromWidget: Boolean, onSelect: () -> Unit) {
     val state by controller.state.collectAsState()
     val library by controller.libraryFlow.collectAsState()
-    val ringSeconds by controller.ringSeconds.collectAsState()
+    val ringSetting by controller.ringSetting.collectAsState()
     val widgetBackground by controller.widgetBackground.collectAsState()
     val scope = rememberCoroutineScope()
     val snackbar = remember { SnackbarHostState() }
@@ -173,7 +180,7 @@ fun TeaTimerApp(controller: BrewController, fromWidget: Boolean, onSelect: () ->
                 modifier = Modifier.weight(1f),
                 onChoose = { sequence -> scope.launch { controller.select(sequence.id) } },
             )
-            RingDurationSetting(ringSeconds, onChange = { scope.launch { controller.setRingSeconds(it) } })
+            RingDurationSetting(ringSetting, onChange = { scope.launch { controller.setRingSetting(it) } })
             WidgetBackgroundSetting(widgetBackground, onChange = { scope.launch { controller.setWidgetBackground(it) } })
         }
     }
@@ -327,26 +334,34 @@ private fun TeaBrowser(
 }
 
 @Composable
-private fun RingDurationSetting(ringSeconds: Int, onChange: (Int) -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text("Ring for")
-        val options = BrewController.RING_SECONDS_OPTIONS
-        SingleChoiceSegmentedButtonRow(Modifier.weight(1f)) {
-            options.forEachIndexed { index, seconds ->
-                SegmentedButton(
-                    selected = seconds == ringSeconds,
-                    onClick = { onChange(seconds) },
-                    shape = SegmentedButtonDefaults.itemShape(index, options.size),
-                ) {
-                    Text("$seconds s")
+private fun RingDurationSetting(ringSetting: Int, onChange: (Int) -> Unit) {
+    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text("Ring for")
+            val options = RingDuration.OPTIONS
+            SingleChoiceSegmentedButtonRow(Modifier.weight(1f)) {
+                options.forEachIndexed { index, setting ->
+                    SegmentedButton(
+                        selected = setting == ringSetting,
+                        onClick = { onChange(setting) },
+                        shape = SegmentedButtonDefaults.itemShape(index, options.size),
+                        icon = {},
+                    ) {
+                        Text(RingDuration.label(setting), maxLines = 1)
+                    }
                 }
             }
+        }
+        if (ringSetting == RingDuration.AUTO) {
+            Text(
+                "Auto: 5 s up to 0:30, 10 s up to 1:00, 15 s up to 2:00; longer steeps ring until you stop them.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

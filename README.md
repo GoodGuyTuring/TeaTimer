@@ -19,11 +19,13 @@ Built for GrapheneOS. It needs no Google services.
   - **Double tap:** restart the current infusion.
   - **✕:** stop and go back to choosing a tea.
   - **Bottom row:** ‹ Prev / Next › jump to the previous or next infusion; the 🔔 chip
-    switches the ring duration (3 → 5 → 10 → 15 s), same setting as in the app.
+    switches the ring duration (Auto → 3 → 5 → 10 → 15 s), same setting as in the app.
   - The widget's **background colour** is chosen in the app (Wallpaper or a fixed colour).
-- When an infusion is done, the phone rings for 3, 5, 10 or 15 seconds (set in the app),
-  following the ringer mode, and the widget lines up the next time. After the last
-  infusion it goes back to choosing.
+- When an infusion is done, the phone rings, following the ringer mode, and the widget lines
+  up the next time. After the last infusion it goes back to choosing. How long it rings is set
+  in the app or on the widget: **Auto** (default: 5 s for steeps up to 0:30, 10 s up to 1:00,
+  15 s up to 2:00, longer steeps ring until stopped, at most 10 minutes) or 3 / 5 / 10 / 15 s.
+  A ringing alarm stops with the notification's Stop, any widget tap, or opening the app.
 - While a timer runs or is paused, a notification shows it, also on the lock screen, with
   Pause / Resume and Stop. On Android 16+ it asks to be a Live Update (countdown chip in the
   status bar).

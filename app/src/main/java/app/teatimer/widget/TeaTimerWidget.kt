@@ -1,5 +1,7 @@
 package app.teatimer.widget
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.util.TypedValue
 import android.widget.RemoteViews
@@ -13,6 +15,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.ColorFilter
+import androidx.glance.ExperimentalGlanceApi
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
@@ -27,7 +30,9 @@ import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.AndroidRemoteViews
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
+import androidx.glance.appwidget.compose
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.action.ActionCallback
 import androidx.glance.appwidget.action.actionRunCallback
@@ -54,6 +59,7 @@ import app.teatimer.R
 import app.teatimer.brew.BrewController
 import app.teatimer.model.BrewState
 import app.teatimer.model.BrewingSequence
+import app.teatimer.model.RingDuration
 import app.teatimer.model.WidgetBackground
 import app.teatimer.model.formatRemaining
 import app.teatimer.model.formatSteep
@@ -65,7 +71,7 @@ import app.teatimer.model.formatSteep
  * - Tea chosen: a tap starts, pauses or resumes the infusion; a double tap restarts it.
  *   The ✕ goes back to choosing.
  * - Bottom row: previous / next infusion, and the bell chip that cycles the ring
- *   duration (3 → 5 → 10 → 15 s), as in the app.
+ *   duration (Auto → 3 → 5 → 10 → 15 s), as in the app.
  * - The background colour is chosen in the app.
  */
 class TeaTimerWidget : GlanceAppWidget() {
@@ -77,12 +83,12 @@ class TeaTimerWidget : GlanceAppWidget() {
         provideContent {
             val state by controller.state.collectAsState()
             val library by controller.libraryFlow.collectAsState()
-            val ringSeconds by controller.ringSeconds.collectAsState()
+            val ringSetting by controller.ringSetting.collectAsState()
             val background by controller.widgetBackground.collectAsState()
             GlanceTheme {
                 CompositionLocalProvider(LocalWidgetColors provides widgetColors(background)) {
                     val sequence = state.sequenceId?.let { library[it] }
-                    if (sequence == null) ChooseContent(ringSeconds) else BrewContent(sequence, state, ringSeconds)
+                    if (sequence == null) ChooseContent(ringSetting) else BrewContent(sequence, state, ringSetting)
                 }
             }
         }
@@ -133,7 +139,7 @@ private val widgetModifier: GlanceModifier
         .padding(12.dp)
 
 @Composable
-private fun ChooseContent(ringSeconds: Int) {
+private fun ChooseContent(ringSetting: Int) {
     val context = LocalContext.current
     val colors = LocalWidgetColors.current
     Column(
@@ -152,12 +158,12 @@ private fun ChooseContent(ringSeconds: Int) {
             style = TextStyle(color = colors.subtext),
         )
         Spacer(GlanceModifier.defaultWeight())
-        RingChip(ringSeconds)
+        RingChip(ringSetting)
     }
 }
 
 @Composable
-private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds: Int) {
+private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSetting: Int) {
     val context = LocalContext.current
     val colors = LocalWidgetColors.current
     val step = sequence.steps[state.step]
@@ -260,7 +266,7 @@ private fun BrewContent(sequence: BrewingSequence, state: BrewState, ringSeconds
                 iconAfter = true,
             )
             Spacer(GlanceModifier.defaultWeight())
-            RingChip(ringSeconds)
+            RingChip(ringSetting)
         }
     }
 }
@@ -311,10 +317,10 @@ private const val TIME_MAX_DP = 220f
 
 /** Shows the ring duration; a tap switches to the next one. */
 @Composable
-private fun RingChip(ringSeconds: Int) {
+private fun RingChip(ringSetting: Int) {
     Chip(
         icon = R.drawable.ic_ring,
-        label = "$ringSeconds s",
+        label = RingDuration.label(ringSetting),
         description = "Ring duration",
         action = actionRunCallback<CycleRingAction>(),
     )
@@ -385,13 +391,31 @@ class NextAction : ActionCallback {
 
 class CycleRingAction : ActionCallback {
     override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
-        BrewController.get(context).cycleRingSeconds()
+        BrewController.get(context).cycleRingSetting()
     }
 }
 
 class ResetAction : ActionCallback {
     override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
         BrewController.get(context).stop()
+    }
+}
+
+/**
+ * Redraws every Tea Timer widget right now. Glance's own updates run as background work,
+ * which Android holds back while the phone sleeps: when an infusion ended with the screen
+ * off, the old countdown kept running below zero until the phone was unlocked. The alarm
+ * receiver calls this to render and hand over the new state immediately.
+ */
+@OptIn(ExperimentalGlanceApi::class)
+suspend fun redrawWidgetsNow(context: Context) {
+    val glanceManager = GlanceAppWidgetManager(context)
+    val appWidgetManager = AppWidgetManager.getInstance(context)
+    val provider = ComponentName(context, TeaTimerWidgetReceiver::class.java)
+    appWidgetManager.getAppWidgetIds(provider).forEach { appWidgetId ->
+        val glanceId = glanceManager.getGlanceIdBy(appWidgetId)
+        val views = TeaTimerWidget().compose(context, glanceId, options = appWidgetManager.getAppWidgetOptions(appWidgetId))
+        appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 }
 

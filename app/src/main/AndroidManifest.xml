@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <!-- AlertService: ring/vibrate for a few seconds, also with the screen off. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Ringing "until stopped" runs longer than a short service may (see AlertService). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Only for "Update teas" (downloads the tea list from GitHub). -->
@@ -54,6 +56,6 @@
         <service
             android:name=".brew.AlertService"
             android:exported="false"
-            android:foregroundServiceType="shortService" />
+            android:foregroundServiceType="shortService|systemExempted" />
     </application>
 </manifest>

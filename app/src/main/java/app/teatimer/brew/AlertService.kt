@@ -1,5 +1,6 @@
 package app.teatimer.brew
 
+import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -18,9 +19,11 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import androidx.core.app.ServiceCompat
+import app.teatimer.model.RingDuration
 
 /**
- * Rings and/or vibrates for the chosen number of seconds when an infusion is done.
+ * Rings and/or vibrates when an infusion is done: for a number of seconds, or until it's
+ * stopped (the notification's Stop, a widget tap, or opening the app; at most 10 minutes).
  * Follows the ringer mode: sound + vibration, vibration only, or nothing on silent.
  */
 class AlertService : Service() {
@@ -39,17 +42,60 @@ class AlertService : Service() {
         }
         val title = intent?.getStringExtra(EXTRA_TITLE).orEmpty()
         val text = intent?.getStringExtra(EXTRA_TEXT).orEmpty()
-        ServiceCompat.startForeground(
-            this,
-            Notifications.ID_DONE,
-            Notifications.done(this, title, text),
-            if (Build.VERSION.SDK_INT >= 34) ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE else 0,
+        val ringSeconds = intent?.getIntExtra(EXTRA_RING_SECONDS, DEFAULT_RING_SECONDS) ?: DEFAULT_RING_SECONDS
+        val untilStopped = ringSeconds == RingDuration.UNTIL_STOPPED
+        val notification = Notifications.done(this, title, if (untilStopped) "$text Rings until you stop it." else text)
+        val mayRunLong = startInForeground(notification, untilStopped)
+        startAlert(
+            when {
+                !untilStopped -> ringSeconds * 1000L
+                mayRunLong -> MAX_RING_MS
+                else -> SHORT_SERVICE_RING_MS
+            },
         )
-        startAlert(BrewController.get(this).ringSeconds.value)
         return START_NOT_STICKY
     }
 
-    private fun startAlert(seconds: Int) {
+    /**
+     * Starts as a foreground service; returns whether it may run long. Ringing until stopped
+     * uses the "system exempted" type, which Android allows for apps with exact-alarm
+     * permission continuing an alarm. If it's refused, the short type ends it after ~3 min.
+     */
+    private fun startInForeground(notification: Notification, untilStopped: Boolean): Boolean {
+        if (Build.VERSION.SDK_INT < 34) {
+            ServiceCompat.startForeground(this, Notifications.ID_DONE, notification, 0)
+            return true
+        }
+        if (untilStopped) {
+            try {
+                ServiceCompat.startForeground(
+                    this,
+                    Notifications.ID_DONE,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED,
+                )
+                return true
+            } catch (_: RuntimeException) {
+                // Not allowed on this phone: fall back to the short type below.
+            }
+        }
+        ServiceCompat.startForeground(
+            this,
+            Notifications.ID_DONE,
+            notification,
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE,
+        )
+        return false
+    }
+
+    // The short type's time limit (about 3 minutes) ran out.
+    override fun onTimeout(startId: Int, fgsType: Int) = stopAlert()
+
+    @Suppress("OVERRIDE_DEPRECATION")
+    override fun onTimeout(startId: Int) = stopAlert()
+
+    private fun startAlert(durationMs: Long) {
+        isRinging = true
         stopSoundAndVibration()
         when (getSystemService(AudioManager::class.java).ringerMode) {
             AudioManager.RINGER_MODE_NORMAL -> {
@@ -59,7 +105,6 @@ class AlertService : Service() {
             AudioManager.RINGER_MODE_VIBRATE -> vibrate()
             else -> Unit
         }
-        val durationMs = seconds * 1000L
         wakeLock?.takeIf { it.isHeld }?.release()
         wakeLock = getSystemService(PowerManager::class.java)
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TeaTimer:alert")
@@ -101,6 +146,7 @@ class AlertService : Service() {
     }
 
     private fun stopAlert() {
+        isRinging = false
         handler.removeCallbacks(stopRunnable)
         stopSoundAndVibration()
         wakeLock?.takeIf { it.isHeld }?.release()
@@ -110,6 +156,7 @@ class AlertService : Service() {
     }
 
     override fun onDestroy() {
+        isRinging = false
         handler.removeCallbacks(stopRunnable)
         stopSoundAndVibration()
         wakeLock?.takeIf { it.isHeld }?.release()
@@ -120,13 +167,34 @@ class AlertService : Service() {
         const val ACTION_STOP = "app.teatimer.action.STOP_ALERT"
         private const val EXTRA_TITLE = "title"
         private const val EXTRA_TEXT = "text"
+        private const val EXTRA_RING_SECONDS = "ring_seconds"
+        private const val DEFAULT_RING_SECONDS = 5
+
+        /** "Until stopped" still ends after 10 minutes, like the clock app's alarms. */
+        private const val MAX_RING_MS = 10 * 60_000L
+        /** Below the short service type's ~3 minute limit. */
+        private const val SHORT_SERVICE_RING_MS = 150_000L
+
+        /** Whether the alarm is ringing right now (in this process). */
+        @Volatile
+        var isRinging = false
+            private set
 
         fun start(context: Context, alert: BrewController.Alert) {
             context.startForegroundService(
                 Intent(context, AlertService::class.java)
                     .putExtra(EXTRA_TITLE, alert.title)
-                    .putExtra(EXTRA_TEXT, alert.text),
+                    .putExtra(EXTRA_TEXT, alert.text)
+                    .putExtra(EXTRA_RING_SECONDS, alert.ringSeconds),
             )
+        }
+
+        /**
+         * Stops the alarm if it's ringing. Only then: while ringing, the service is in the
+         * foreground, which is what allows starting it from the background with this intent.
+         */
+        fun stop(context: Context) {
+            if (isRinging) runCatching { context.startService(stopIntent(context)) }
         }
 
         fun stopIntent(context: Context): Intent =

@@ -21,8 +21,8 @@ android {
         applicationId = "app.teatimer"
         minSdk = 31
         targetSdk = 36
-        versionCode = 10
-        versionName = "0.5.2"
+        versionCode = 11
+        versionName = "0.6.0"
     }
 
     signingConfigs {
@@ -63,6 +63,9 @@ android {
         unitTests.all {
             // Robolectric reaches into JDK internals that Java 17+ hides by default.
             it.jvmArgs("--add-exports", "java.base/jdk.internal.access=ALL-UNNAMED")
+            // One JVM per test class: Glance keeps process-wide state (its DataStore) that
+            // clashes with Robolectric's fresh app per test once a widget exists.
+            it.forkEvery = 1
         }
     }
 }
@@ -90,4 +93,5 @@ dependencies {
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.androidx.test.junit)
+    testImplementation(libs.androidx.work.testing)
 }
